@@ -1,6 +1,11 @@
 # Genetic Correlation
 Data description, scripts and result for conducting genetic correlation
 
+#install LDSC
+LDSC runs in Python, so you must first install LDSC and the associated dependent Python packages.
+Please follow the LDSC tutorial: https://github.com/bulik/ldsc/wiki/Heritability-and-Genetic-Correlation
+
+
 # Description of result files
 FA_phenotype.pdf: phenotypic data distribution of 6 fatty acids  
 FA_phenotype_pct.pdf: phenotypic data distribution of 8 fatty acids percentage  
