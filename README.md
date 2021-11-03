@@ -18,7 +18,7 @@ run .sh if GWAS summary statistic data is VCF format using GWAS2VCF tool (https:
 run 02.convert_NegLogP2P.R to convert -log10 P to P value.  
 2. Munge data using LDSC    
 run 03.munge.sh       
-3. Estimate genetic correlation using LDSC
+3. Estimate genetic correlation using LDSC    
 run 04.rg.sh     
 4. Visualize results
 
