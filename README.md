@@ -2,8 +2,24 @@
 Data description, scripts and result for conducting genetic correlation
 
 # Install LDSC
-LDSC runs in Python, so you must first install LDSC and the associated dependent Python packages.  
+LD Score Regression (LDSC) runs in Python, so you must first install LDSC and the associated dependent Python packages.  
 Please follow the LDSC tutorial: https://github.com/bulik/ldsc/wiki/Heritability-and-Genetic-Correlation  
+
+# Data discription
+1. Psychiatric data
+GWAS summary statistic data were downloaded from:
+2. Fatty Acids data
+GWAS summary statistic data were downloaded from:
+phenotypic data were downloaded from:
+
+# Scripts for conducting LDSC
+1. data preparation
+
+2. Munge data using LDSC
+
+3. Estimate genetic correlation using LDSC
+
+4. Visualize results
 
 
 # Description of result files
