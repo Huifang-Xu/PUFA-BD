@@ -1,4 +1,4 @@
-#! bin/Rscript
+#!/bin/Rscript
 
 #This script is to convert -log10 P to P
 
