@@ -2,9 +2,6 @@
 
 #This script is to plot heatmap to visualize result of genetic correlation or phenotypic correlation.
 
-#set work dictionary
-setwd('/results/')
-
 #load R packages
 library(tidyverse)
 library(reshape2)
