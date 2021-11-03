@@ -1,5 +1,5 @@
 # Genetic Correlation
-Data description, scripts and result for conducting genetic correlation and phenotypic correlation
+Data description, scripts and results for genetic correlation and phenotypic correlation
 
 # Install LDSC
 LD Score Regression (LDSC) runs in Python, so you must first install LDSC and the associated dependent Python packages.  
@@ -7,10 +7,10 @@ Please follow the LDSC tutorial: https://github.com/bulik/ldsc/wiki/Heritability
 
 # Data discription
 1. Psychiatric Disorders  
-GWAS summary statistic data were downloaded from:  
+GWAS summary statistic data were downloaded from:  https://www.med.unc.edu/pgc    
 2. Fatty Acids   
-GWAS summary statistic data were downloaded from:  
-phenotypic data were downloaded from:  
+GWAS summary statistic data were downloaded from: https://gwas.mrcieu.ac.uk/    
+phenotypic data were downloaded from: https://www.ukbiobank.ac.uk/     
 
 # Scripts for conducting LDSC and phenotypic correlation
 1. data preparation     
