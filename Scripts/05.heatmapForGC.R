@@ -8,7 +8,6 @@ setwd('/results/')
 #load R packages
 library(tidyverse)
 library(reshape2)
-library(pheatmap)
 library(viridisLite)
 library(corrplot)
 
@@ -54,10 +53,8 @@ corrplot(gc_matrix_PGC_PUFA,
          tl.srt = 45,
          addCoef.col = "grey",
          mar=c(1,1,1,1),
-         p.mat=gc_matrix_PGC_PUFA_P, 
+         p.mat=gc_matrix_PGC_PUFA_P,  #matrix of P values
          sig.level = 0.05,
          pch.cex = 0.9,
          pch.col="black"))
-
-
 
