@@ -12,7 +12,7 @@ GWAS summary statistic data were downloaded from:
 GWAS summary statistic data were downloaded from:  
 phenotypic data were downloaded from:  
 
-# Scripts for conducting LDSC
+# Scripts for conducting LDSC and c
 1. data preparation     
 run 01.convertVCF2TXT.sh to convert VCF format to TXT format if GWAS summary statistic data is VCF using GWAS2VCF tool (https://github.com/MRCIEU/gwasvcf).     
 run 02.convert_NegLogP2P.R to convert -log10 P to P value.  
@@ -20,7 +20,10 @@ run 02.convert_NegLogP2P.R to convert -log10 P to P value.
 run 03.munge.sh       
 3. Estimate genetic correlation using LDSC    
 run 04.rg.sh     
-4. Visualize results
+4. conduct phenotypic correlation   
+run 05.phenotypic_correlation.R       
+5. Visualize results    
+run 06.heatmap.R    
 
 
 # Description of result files
