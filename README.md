@@ -6,9 +6,9 @@ LD Score Regression (LDSC) runs in Python, so you must first install LDSC and th
 Please follow the LDSC tutorial: https://github.com/bulik/ldsc/wiki/Heritability-and-Genetic-Correlation  
 
 # Data discription
-1. Psychiatric Disorders. 
+1. Psychiatric Disorders.  
 GWAS summary statistic data were downloaded from:  
-2. Fatty Acids. 
+2. Fatty Acids.   
 GWAS summary statistic data were downloaded from:  
 phenotypic data were downloaded from:  
 
