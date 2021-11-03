@@ -26,3 +26,6 @@ for (i in 2:ncol(df)){
 pc_matrix <- corr_results[-1,]
 pc_matrix <- acast(pc_matrix,p1~p2)
 pc_matrix <- as.matrix(pc_matrix)
+
+#write table
+write.table(pc_matrix,"pc_matrix.txt",sep="\t",row.names=FALSE,quote=FALSE)
