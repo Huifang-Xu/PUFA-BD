@@ -1,4 +1,4 @@
-#! bin/bash
+#!/bin/bash
 
 #Data format of vcf file:
 #CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  met-d-Omega_3
