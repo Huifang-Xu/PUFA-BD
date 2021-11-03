@@ -9,14 +9,14 @@ source activate ldsc
 
 #munge data for Phenotype 1
 /home/hx37930/ldsc/munge_sumstats.py \
-    --sumstats scz.swe.pgc1.results.v3.txt \ #GWAS summary statistics data of Phenotype 1
-    --N 17115 \ #sample size of phenotype 1 
-    --out scz \ #Output file prefix
+    --sumstats met-d-Omega_3.convertP.txt \ #GWAS summary statistics data of Phenotype 1
+    --N 114999 \ #sample size of phenotype 1 
+    --out Omega_3 \ #Output file prefix
     --merge-alleles w_hm3.snplist #Hapmap3 reference panel (containing well-imoutated SNPs)
 
 #munge data for Phenotype 2
 /home/hx37930/ldsc/munge_sumstats.py \
-    --sumstats pgc.bip.full.2012-04.txt \ #GWAS summary statistics data of Phenotype 2
-    --N 11810 \ #sample size of phenotype 2
-    --out bip \ #Output file prefix
+    --sumstats met-d-Omega_6.convertP.txt \ #GWAS summary statistics data of Phenotype 2
+    --N 114999 \ #sample size of phenotype 2
+    --out Omega_6 \ #Output file prefix
     --merge-alleles w_hm3.snplist #Hapmap3 reference panel (contain well-imoutated SNPs)
