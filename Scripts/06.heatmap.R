@@ -56,5 +56,5 @@ corrplot(gc_matrix_PGC_PUFA,
          p.mat=gc_matrix_PGC_PUFA_P,  #matrix of P values
          sig.level = 0.05,
          pch.cex = 0.9,
-         pch.col="black"))
+         pch.col="black")
 
