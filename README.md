@@ -14,11 +14,12 @@ phenotypic data were downloaded from:
 
 # Scripts for conducting LDSC
 1. data preparation
-
+run .sh if GWAS summary statistic data was VCF format using GWAS2VCF tool (https://github.com/MRCIEU/gwasvcf).   
+run 02.convert_NegLogP2P.R to convert -log10 P to P value.  
 2. Munge data using LDSC
-
+run 03.munge.sh
 3. Estimate genetic correlation using LDSC
-
+run 04.rg.sh
 4. Visualize results
 
 
