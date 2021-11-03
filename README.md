@@ -14,7 +14,7 @@ phenotypic data were downloaded from:
 
 # Scripts for conducting LDSC
 1. data preparation     
-run .sh to convert VCF format to TXT format if GWAS summary statistic data is VCF using GWAS2VCF tool (https://github.com/MRCIEU/gwasvcf).     
+run 01.convertVCF2TXT.sh to convert VCF format to TXT format if GWAS summary statistic data is VCF using GWAS2VCF tool (https://github.com/MRCIEU/gwasvcf).     
 run 02.convert_NegLogP2P.R to convert -log10 P to P value.  
 2. Munge data using LDSC    
 run 03.munge.sh       
