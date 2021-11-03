@@ -1,5 +1,5 @@
 # Genetic Correlation
-Data description, scripts and result for conducting genetic correlation
+Data description, scripts and result for conducting genetic correlation and phenotypic correlation
 
 # Install LDSC
 LD Score Regression (LDSC) runs in Python, so you must first install LDSC and the associated dependent Python packages.  
@@ -12,7 +12,7 @@ GWAS summary statistic data were downloaded from:
 GWAS summary statistic data were downloaded from:  
 phenotypic data were downloaded from:  
 
-# Scripts for conducting LDSC and c
+# Scripts for conducting LDSC and phenotypic correlation
 1. data preparation     
 run 01.convertVCF2TXT.sh to convert VCF format to TXT format if GWAS summary statistic data is VCF using GWAS2VCF tool (https://github.com/MRCIEU/gwasvcf).     
 run 02.convert_NegLogP2P.R to convert -log10 P to P value.  
