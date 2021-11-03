@@ -6,20 +6,20 @@ LD Score Regression (LDSC) runs in Python, so you must first install LDSC and th
 Please follow the LDSC tutorial: https://github.com/bulik/ldsc/wiki/Heritability-and-Genetic-Correlation  
 
 # Data discription
-1. Psychiatric Disorders.  
+1. Psychiatric Disorders  
 GWAS summary statistic data were downloaded from:  
-2. Fatty Acids.   
+2. Fatty Acids   
 GWAS summary statistic data were downloaded from:  
 phenotypic data were downloaded from:  
 
 # Scripts for conducting LDSC
-1. data preparation
-run .sh if GWAS summary statistic data was VCF format using GWAS2VCF tool (https://github.com/MRCIEU/gwasvcf).   
+1. data preparation     
+run .sh if GWAS summary statistic data is VCF format using GWAS2VCF tool (https://github.com/MRCIEU/gwasvcf).     
 run 02.convert_NegLogP2P.R to convert -log10 P to P value.  
-2. Munge data using LDSC
-run 03.munge.sh
+2. Munge data using LDSC    
+run 03.munge.sh       
 3. Estimate genetic correlation using LDSC
-run 04.rg.sh
+run 04.rg.sh     
 4. Visualize results
 
 
