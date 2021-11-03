@@ -36,6 +36,7 @@ gc_PGC_FAs_3.pdf: heatmap of genetic correlation between 11 psychiatric disorder
 BIP-leaveoneout.pdf: leave one out sensitivity for BIP MR result  
 SCZ-leaveoneout.pdf: leave one out sensitivity for SCZ MR result  
 genetic correlation_matrix.txt: data matrix of genetic correlation values for 14 fatty acids  
-summary_GC2.txt: results of pair-wise genetic correlations  
+summary_GC.txt: results of pair-wise genetic correlations among fatty acids   
+summary_GC2.txt: results of pair-wise genetic correlations between psychiatric disorders and fatty acids   
 
 
