@@ -2,7 +2,7 @@
 
 #This script is to convert -log10 P to P
 
-#command format: converP.r inputFile outputFile
+#command format: Rscript converP.r inputFile outputFile
 Args <- commandArgs()
 
 #read table
