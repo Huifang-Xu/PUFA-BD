@@ -38,6 +38,6 @@ sed -r 's/:/\t/g;s/chr//g;s/hg19/CHR/;s/start/BP/g' pgc.scz.full.2012-04.hg18Toh
 ########################################## SCZ_23974872: rename header ###############################
 zcat scz.swe.pgc1.results.v3.txt.gz |sed -r 's/snpid/SNP/;s/hg19chr/CHR/;s/bp/BP/;s/a1/A1/;s/a2/A2/;s/Pval/P/' > SCZ_23974872.clean.txt
 
-########################################## SCZ_23974872: rename header ###############################
+########################################## SCZ_29483656: rename header ###############################
 
 
