@@ -1,7 +1,7 @@
 ## script to clean and format summary statistics data
 cd /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders
 
-######################################### AD_30617256: reorder ######################################
+######################################### AD_30617256: reorder columns ######################################
 zcat AD/30617256/AD_sumstats_Jansenetal_2019sept.txt.gz |awk 'BEGIN{FS=OFS="\t"}{print $6,$2,$3,$4,$5,$1,$12,$13,$14,$7,$8,$9,$10,$11}' > AD_30617256.clean.txt
 
 #uniqID.a1a2 = uniq ID per variant, format -> CHR:BP_A1_A2
@@ -19,7 +19,7 @@ zcat AD/30617256/AD_sumstats_Jansenetal_2019sept.txt.gz |awk 'BEGIN{FS=OFS="\t"}
 #BETA = effect size
 #SE = standard error
 
-########################################## SCZ_21926974: convert hg18 to hg19 using liftover; reorder ###############################
+########################################## SCZ_21926974: convert hg18 to hg19 using liftover; reorder columns ###############################
 # build hg18 BED file according to raw summary statistics
 # header: hg18chr start   end     SNP:hg18chr:BP:A1:A2:OR:SE:P:INFO:ngt:CEUaf
 sed -r 's/ /\t/g' pgc.scz.full.2012-04.txt |awk -F '\t' 'NR>1{print "chr"$2"\t"$3"\t"$3+1"\t"$1":"$2":"$3":"$4":"$5":"$6":"$7":"$8":"$9":"$10":"$11}'  > pgc.scz.full.2012-04.bed
@@ -39,5 +39,8 @@ sed -r 's/:/\t/g;s/chr//g;s/hg19/CHR/;s/start/BP/g' pgc.scz.full.2012-04.hg18Toh
 zcat scz.swe.pgc1.results.v3.txt.gz |sed -r 's/snpid/SNP/;s/hg19chr/CHR/;s/bp/BP/;s/a1/A1/;s/a2/A2/;s/Pval/P/' > SCZ_23974872.clean.txt
 
 ########################################## SCZ_29483656: rename header ###############################
+zcat CLOZUK_PGC2noclo.METAL.assoc.dosage.fix.gz | sed -r 's/ /\t/g' | sort -n -k 2 -k 3 > SCZ_29483656.clean.txt
 
+########################################## MDD_29700475: reorder columns ###############################
+zcat MDD2018_ex23andMe.gz  |awk 'BEGIN{FS=OFS="\t"}{print $2,$1,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$17,$18}'  > MDD_29700475.clean.txt
 
