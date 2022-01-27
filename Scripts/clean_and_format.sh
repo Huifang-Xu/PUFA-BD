@@ -4,6 +4,7 @@ cd /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders
 ######################################### AD_30617256: reorder columns ######################################
 zcat AD/30617256/AD_sumstats_Jansenetal_2019sept.txt.gz |awk 'BEGIN{FS=OFS="\t"}{print $6,$2,$3,$4,$5,$1,$12,$13,$14,$7,$8,$9,$10,$11}' > AD_30617256.clean.txt
 
+#header
 #uniqID.a1a2 = uniq ID per variant, format -> CHR:BP_A1_A2
 #CHR = chromosome
 #BP = base pair position
@@ -35,8 +36,36 @@ sed -i '1i hg19chr\tstart\tend\tSNP:hg18chr:BP:A1:A2:OR:SE:P:INFO:ngt:CEUaf' pgc
 # header: SNP     CHR     BP      A1      A2      OR      SE      P       INFO    ngt     CEUaf
 sed -r 's/:/\t/g;s/chr//g;s/hg19/CHR/;s/start/BP/g' pgc.scz.full.2012-04.hg18Tohg19.map.txt | awk 'BEGIN{FS=OFS="\t"}{print $4,$1,$2,$7,$8,$9,$10,$11,$12,$13,$14}' > SCZ_21926974.clean.txt
 
+#header
+#snpid: SNP rs ID
+#hg18chr: hg18 chromosome (1-22) 
+#bp: hg18 base position of SNP
+#a1: reference allele (not necessarily minor allele)
+#a2: alternate allele
+#or: odds ratio from logistic regression including PCA covariates (see papers) se standard error of the odds ratio
+#se: standard error
+#pval: asymptotic p-value
+#info: INFO score from imputation, ratio of variances, can exceed 1
+#ngt: number of studies in which this SNP directly genotyped (not imputed) 
+#CEUaf: frequency of a1 in HapMap3 CEU (HapMap2 for BIP)
+
+
 ########################################## SCZ_23974872: rename header ###############################
 zcat scz.swe.pgc1.results.v3.txt.gz |sed -r 's/snpid/SNP/;s/hg19chr/CHR/;s/bp/BP/;s/a1/A1/;s/a2/A2/;s/Pval/P/' > SCZ_23974872.clean.txt
+
+#header
+#snpid: SNP ID (most are rs IDs, some are not)
+#hg19chr: hg19 chromosome (1-22)
+#bp: hg19 base position of SNP
+#a1: reference allele (not necessarily minor allele) 
+#a2: alternate allele
+#INFO: imputation INFO score
+#OR: odds ratio from logistic regression including PCA covariates (see paper)
+#SE: standard error of the odds ratio
+#Pval: asymptotic p-value
+#1kgminor: minor allele used in 1000 Genomes Project
+#1kgfreq: frequency of minor allele in 1000 Genomes EUR data (range 0-0.5)
+#useForRPS: =1 for 92K SNPs that can be used for risk profile (or polygenic) scoring, =0 otherwise
 
 ########################################## SCZ_29483656: rename header ###############################
 zcat CLOZUK_PGC2noclo.METAL.assoc.dosage.fix.gz | sed -r 's/ /\t/g' | sort -n -k 2 -k 3 > SCZ_29483656.clean.txt
