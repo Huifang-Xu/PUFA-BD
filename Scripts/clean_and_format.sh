@@ -4,7 +4,7 @@ cd /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders
 ######################################### AD_30617256: reorder columns ######################################
 zcat AD/30617256/AD_sumstats_Jansenetal_2019sept.txt.gz |awk 'BEGIN{FS=OFS="\t"}{print $6,$2,$3,$4,$5,$1,$12,$13,$14,$7,$8,$9,$10,$11}' > AD_30617256.clean.txt
 
-#header
+#header (Raw data)
 #uniqID.a1a2 = uniq ID per variant, format -> CHR:BP_A1_A2
 #CHR = chromosome
 #BP = base pair position
@@ -36,7 +36,7 @@ sed -i '1i hg19chr\tstart\tend\tSNP:hg18chr:BP:A1:A2:OR:SE:P:INFO:ngt:CEUaf' pgc
 # header: SNP     CHR     BP      A1      A2      OR      SE      P       INFO    ngt     CEUaf
 sed -r 's/:/\t/g;s/chr//g;s/hg19/CHR/;s/start/BP/g' pgc.scz.full.2012-04.hg18Tohg19.map.txt | awk 'BEGIN{FS=OFS="\t"}{print $4,$1,$2,$7,$8,$9,$10,$11,$12,$13,$14}' > SCZ_21926974.clean.txt
 
-#header
+#header (Raw data)
 #snpid: SNP rs ID
 #hg18chr: hg18 chromosome (1-22) 
 #bp: hg18 base position of SNP
@@ -53,7 +53,7 @@ sed -r 's/:/\t/g;s/chr//g;s/hg19/CHR/;s/start/BP/g' pgc.scz.full.2012-04.hg18Toh
 ########################################## SCZ_23974872: rename header ###############################
 zcat scz.swe.pgc1.results.v3.txt.gz |sed -r 's/snpid/SNP/;s/hg19chr/CHR/;s/bp/BP/;s/a1/A1/;s/a2/A2/;s/Pval/P/' > SCZ_23974872.clean.txt
 
-#header
+#header (Raw data)
 #snpid: SNP ID (most are rs IDs, some are not)
 #hg19chr: hg19 chromosome (1-22)
 #bp: hg19 base position of SNP
@@ -73,9 +73,20 @@ zcat CLOZUK_PGC2noclo.METAL.assoc.dosage.fix.gz | sed -r 's/ /\t/g' | sort -n -k
 ########################################## MDD_29700475: reorder columns ###############################
 #zcat MDD2018_ex23andMe.gz  |awk 'BEGIN{FS=OFS="\t"}{print $2,$1,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$17,$18}'  > MDD_29700475.clean.txt
 
+#data format (Raw data): https://docs.google.com/document/d/1TWIhr8-qpCXB13WCXcU1_HDio8lC_MeWoAg2jlggrtU/edit#heading=h.4008addvumol
+
 ########################################## MDD_30718901: convert logOR and SE; reorder columns ###############################
 convert LogOR to OR, StdErrLogOR to StdErr
 Rscript /scratch/hx37930/project/psychiatri_PUFAs/shell/convertLog.r PGC_UKB_depression_genome-wide.txt PGC_UKB_depression_genome-wide.convertLog.txt
+
+#header (Raw data)
+#MarkerName - RS number of variant
+#A1 - Effect allelle
+#A2 - Alternative allele
+#Freq - Frequency of A1 allele
+#LogOR - Log odds ratio for A1 allele
+#StdErrLogOR - Standard error of log odds ratio for A1 allele
+#P - P-value
 
 ########################################## MDD_22472876: convert hg18 to hg19 using liftover; reorder columns ###############################
 sh /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/MDD/22472876/hg18Tohg19.sh
