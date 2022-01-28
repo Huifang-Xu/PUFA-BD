@@ -20,6 +20,13 @@ zcat AD/30617256/AD_sumstats_Jansenetal_2019sept.txt.gz |awk 'BEGIN{FS=OFS="\t"}
 #BETA = effect size
 #SE = standard error
 
+########################################## SCZ_25056061: add EAF; convert OR; reorder columns ###############################################
+#convert OR to logOR 
+sbatch convertOR2LogOR.sh
+# add EAF
+awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$18,$19,"EAF",$12,$13,$14,$15,$16,$17}' SCZ_25056061.convertOR.txt > SCZ_25056061.clean.txt
+awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$18,$19,($6*35476+$7*46839)/(35476+46839),$12,$13,$14,$15,$16,$17}' SCZ_25056061.convertOR.txt >> SCZ_25056061.clean.txt
+
 ########################################## SCZ_21926974: convert hg18 to hg19 using liftover; reorder columns ###############################
 # build hg18 BED file according to raw summary statistics
 # header: hg18chr start   end     SNP:hg18chr:BP:A1:A2:OR:SE:P:INFO:ngt:CEUaf
@@ -76,7 +83,7 @@ awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$13,$14,$10,$11,$12}' S
 ########################################## SCZ_29483656: rename header ###############################
 #convert OR to logOR, SE to logSE
 zcat CLOZUK_PGC2noclo.METAL.assoc.dosage.fix.gz | sed -r 's/ /\t/g' | sort -n -k 2 -k 3 > SCZ_29483656.txt
-sbatch /scratch/hx37930/project/psychiatri_PUFAs/shell/convert.sh
+sbatch /scratch/hx37930/project/psychiatri_PUFAs/shell/convertOR2LogOR.sh
 #ml R/4.1.0-foss-2019b
 # Rscript convertLog.r inputFile outputFile columnNumber_P columnNumber_OR/logOR
 #Rscript /scratch/hx37930/project/psychiatri_PUFAs/shell/convertLog.r SCZ_29483656.txt SCZ_29483656.convertOR.txt 8 6
@@ -90,7 +97,7 @@ awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$10,$11,$9}' SCZ_29483656.
  
 ########################################## MDD_29700475: reorder columns; convert OR; add EAF ###############################
 zcat MDD2018_ex23andMe.gz  |awk 'BEGIN{FS=OFS="\t"}{print $2,$1,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$17,$18}'  > MDD_29700475.txt
-sbatch convertOR.sh
+sbatch convertOR2LogOR.sh
 #reorder columns and add effect allele frequencies (EAF)
 awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$15,$16,$12,$13,$14,"EAF"}' MDD_29700475.convertOR.txt > MDD_29700475.clean.txt
 awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$15,$16,$12,$13,$14,($6*$13+$7*$14)/($13+$14)}' MDD_29700475.convertOR.txt >> MDD_29700475.clean.txt
@@ -100,8 +107,8 @@ awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$15,$16,$12
 
 ########################################## MDD_30718901: convert logOR and SE; reorder columns ###############################
 #convert LogOR to OR, StdErrLogOR to StdErr
-ml R/4.1.0-foss-2019b
-Rscript /scratch/hx37930/project/psychiatri_PUFAs/shell/convertLog.r PGC_UKB_depression_genome-wide.txt PGC_UKB_depression_genome-wide.convertLog.txt
+sbatch convertLogOR2OR.sh
+#rename columnName: MarkerName to SNP, LogOR to logOR, StdErrLogOR to SElogOR
 
 #header (Raw data)
 #MarkerName - RS number of variant
@@ -112,9 +119,9 @@ Rscript /scratch/hx37930/project/psychiatri_PUFAs/shell/convertLog.r PGC_UKB_dep
 #StdErrLogOR - Standard error of log odds ratio for A1 allele
 #P - P-value
 
-########################################## MDD_22472876: convert hg18 to hg19 using liftover; reorder columns ###############################
+########################################## MDD_22472876: convert hg18 to hg19 using liftover; reorder columns; convert OR ###############################
 sh /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/MDD/22472876/hg18Tohg19.sh
-sbatch convertOR.sh
+sbatch convertOR2LogOR.sh
 awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$12,$13,$9,$10,$11}' MDD_22472876.convertOR.txt > MDD_22472876.clean.txt
 
 ########################################## BIP_31043756: reorder columns ###############################
@@ -124,3 +131,60 @@ awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$12,$13,$9,$10,$11}' MDD_2
 zcat pgc-bip2021-all.vcf.tsv.gz |awk '$1!~/#/{print}' | awk -v FS="\t" -v OFS="\t" 'BEGIN{print "SNP\tCHR\tBP\tA1\tA2\tBETA\tSE\tP\tngt\tFreq_case\tFreq_ctrl\tINFO\tNcase\tNcontrol"}{print $3,$1,$2,$4,$5,$6,$7,$8,$9,$10,$11,$12,$14,$15}' > BIP_34002096.clean.txt
 # Add EAF
 awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,"EAF"}' BIP_34002096.txt > BIP_34002096.clean.txt
+
+########################################## BIP_31043756: add EAF, convert OR, reorder columns ################################################
+zcat daner_PGC_BIP32b_mds7a_0416a.gz > BIP_31043756.txt
+sbatch convertOR.sh
+#add EAF
+awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$20,$21,"EAF",$12,$13,$14,$15,$16,$17,$18,$19}' BIP_31043756.convertOR.txt > BIP_31043756.clean.txt
+awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$20,$21,($6*$17+$7*$18)/($17+$18),$12,$13,$14,$15,$16,$17,$18,$19}' BIP_31043756.convertOR.txt >> BIP_31043756.clean.txt
+
+########################################## BIP_21926972: convert hg18 to hg19 using liftover; reorder columns; convert OR ####################
+sh /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/BIP/21926972/hg18Tohg19.sh
+sbatch convertOR.sh
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$12,$13,$9,$10,$11}' BIP_21926972.convertOR.txt > BIP_21926972.clean.txt
+
+########################################## OCD_28761083: convert OR to logOR #################################################################
+zcat ocd_aug2017.gz > OCD_28761083.txt
+sbatch convertOR.sh
+
+########################################## ANX_26754954: convert OR to logOR, rename column name #################################################################
+sbatch convertOR.sh
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$11,$12,$10}' ANX_26754954.convertOR.txt > ANX_26754954.clean.txt
+
+#header:
+#SNPID: rs-number of the SNP. new name: SNP
+#CHR: hg 19 chromosome number (1-22)
+#BP: hg 19 base position of SNP 
+#Allele1: reference allele (paper: First allele is the reference allele, for which the effect is reported.) new name: A1
+#Allele2: alternative allele. new name: A2
+#Freq1: allele frequency of Allele1. new name: EAF
+#Effect: regression coefficient (logistic regression for CC; linear regression for FS). new name: OR
+#StdErr: standard error. new name: SE
+#P.value: p-value. new name: P
+#TotalN: number of subjects
+
+########################################## ANX_31712720: convert OR to logOR, rename column name #################################################################
+zcat pgc-panic2019.vcf.tsv.gz |awk '$1!~/##/{print}' > ANX_31712720.txt
+awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,"EAF",$12,$13,$14,$15,$16}' ANX_31712720.txt > ANX_31712720.clean.txt
+
+awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,($10*$14+$11*$15)/($14+$15),$12,$13,$14,$15,$16}' ANX_31712720.txt >> ANX_31712720.clean.txt
+#awk: cmd. line:1: (FILENAME=ANX_31712720.txt FNR=9889446) fatal: division by zero attempted
+###########################################error in raw data format
+
+#header
+##INFO=<ID=A1,Number=1,Type=Character,Description="SNP reference allele for freq, and ln(OR) or beta">
+##INFO=<ID=A2,Number=1,Type=Character,Description="SNP alternate allele">
+##INFO=<ID=BETA,Number=1,Type=Float,Description="ln(OR) or beta of A1">
+##INFO=<ID=SE,Number=1,Type=Float,Description="standard error">
+##INFO=<ID=PVAL,Number=1,Type=Float,Description="P-value, uncorrected">.  rename as "P".
+##INFO=<ID=NGT,Number=1,Type=Float,Description="number of cohorts genotyped">
+##INFO=<ID=FCAS,Number=1,Type=Float,Description="frequency of A1 in cases">
+##INFO=<ID=FCON,Number=1,Type=Float,Description="frequency of A1 in controls">
+##INFO=<ID=IMPINFO,Number=1,Type=Float,Description="imputation INFO score">
+##INFO=<ID=NEFFDIV2,Number=1,Type=Float,Description="half effective sample size total">
+##INFO=<ID=NCAS,Number=1,Type=Float,Description="effective sample size cases">
+##INFO=<ID=NCON,Number=1,Type=Float,Description="effective sample size controls">
+##INFO=<ID=DIRE,Number=1,Type=String,Description="direction of effects by cohort">
+
+
