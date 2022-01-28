@@ -34,7 +34,11 @@ sed -i '1i hg19chr\tstart\tend\tSNP:hg18chr:BP:A1:A2:OR:SE:P:INFO:ngt:CEUaf' pgc
 
 # Format data
 # header: SNP     CHR     BP      A1      A2      OR      SE      P       INFO    ngt     CEUaf
-sed -r 's/:/\t/g;s/chr//g;s/hg19/CHR/;s/start/BP/g' pgc.scz.full.2012-04.hg18Tohg19.map.txt | awk 'BEGIN{FS=OFS="\t"}{print $4,$1,$2,$7,$8,$9,$10,$11,$12,$13,$14}' > SCZ_21926974.clean.txt
+sed -r 's/:/\t/g;s/chr//g;s/hg19/CHR/;s/start/BP/g' pgc.scz.full.2012-04.hg18Tohg19.map.txt | awk 'BEGIN{FS=OFS="\t"}{print $4,$1,$2,$7,$8,$9,$10,$11,$12,$13,$14}' > SCZ_21926974.txt
+
+#convert OR
+sbatch /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/SCZ/21926974/convertOR.sh
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$12,$13,$9,$10,$11}' SCZ_21926974.convertOR.txt > SCZ_21926974.clean.txt
 
 #header (Raw data)
 #snpid: SNP rs ID
@@ -51,7 +55,9 @@ sed -r 's/:/\t/g;s/chr//g;s/hg19/CHR/;s/start/BP/g' pgc.scz.full.2012-04.hg18Toh
 
 
 ########################################## SCZ_23974872: rename header ###############################
-zcat scz.swe.pgc1.results.v3.txt.gz |sed -r 's/snpid/SNP/;s/hg19chr/CHR/;s/bp/BP/;s/a1/A1/;s/a2/A2/;s/Pval/P/' > SCZ_23974872.clean.txt
+zcat scz.swe.pgc1.results.v3.txt.gz |sed -r 's/snpid/SNP/;s/hg19chr/CHR/;s/bp/BP/;s/a1/A1/;s/a2/A2/;s/Pval/P/' > SCZ_23974872.txt
+sbatch /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/SCZ/23974872/convertOR.sh
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$13,$14,$10,$11,$12}' SCZ_23974872.convertOR.txt > SCZ_23974872.clean.txt
 
 #header (Raw data)
 #snpid: SNP ID (most are rs IDs, some are not)
@@ -68,15 +74,33 @@ zcat scz.swe.pgc1.results.v3.txt.gz |sed -r 's/snpid/SNP/;s/hg19chr/CHR/;s/bp/BP
 #useForRPS: =1 for 92K SNPs that can be used for risk profile (or polygenic) scoring, =0 otherwise
 
 ########################################## SCZ_29483656: rename header ###############################
-zcat CLOZUK_PGC2noclo.METAL.assoc.dosage.fix.gz | sed -r 's/ /\t/g' | sort -n -k 2 -k 3 > SCZ_29483656.clean.txt
+#convert OR to logOR, SE to logSE
+zcat CLOZUK_PGC2noclo.METAL.assoc.dosage.fix.gz | sed -r 's/ /\t/g' | sort -n -k 2 -k 3 > SCZ_29483656.txt
+sbatch /scratch/hx37930/project/psychiatri_PUFAs/shell/convert.sh
+#ml R/4.1.0-foss-2019b
+# Rscript convertLog.r inputFile outputFile columnNumber_P columnNumber_OR/logOR
+#Rscript /scratch/hx37930/project/psychiatri_PUFAs/shell/convertLog.r SCZ_29483656.txt SCZ_29483656.convertOR.txt 8 6
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$10,$11,$9}' SCZ_29483656.convertOR.txt > SCZ_29483656.clean.txt
 
-########################################## MDD_29700475: reorder columns ###############################
-#zcat MDD2018_ex23andMe.gz  |awk 'BEGIN{FS=OFS="\t"}{print $2,$1,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$17,$18}'  > MDD_29700475.clean.txt
+###formula
+#convert OR to beta (log(OR)): beta = log(OR)
+#calculate SE of beta (logOR): se=sqrt(((beta)^2)/qchisq(p,1,lower.tail=F)).
+#convert beta/log(OR) to OR: OR = exp(beta)
+#calculate SE of OR: se=abs(log(or)/qnorm(p/2))
+ 
+########################################## MDD_29700475: reorder columns; convert OR; add EAF ###############################
+zcat MDD2018_ex23andMe.gz  |awk 'BEGIN{FS=OFS="\t"}{print $2,$1,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$17,$18}'  > MDD_29700475.txt
+sbatch convertOR.sh
+#reorder columns and add effect allele frequencies (EAF)
+awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$15,$16,$12,$13,$14,"EAF"}' MDD_29700475.convertOR.txt > MDD_29700475.clean.txt
+awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$15,$16,$12,$13,$14,($6*$13+$7*$14)/($13+$14)}' MDD_29700475.convertOR.txt >> MDD_29700475.clean.txt
 
-#data format (Raw data): https://docs.google.com/document/d/1TWIhr8-qpCXB13WCXcU1_HDio8lC_MeWoAg2jlggrtU/edit#heading=h.4008addvumol
+
+#daner data format (Raw data): https://docs.google.com/document/d/1TWIhr8-qpCXB13WCXcU1_HDio8lC_MeWoAg2jlggrtU/edit#heading=h.4008addvumol
 
 ########################################## MDD_30718901: convert logOR and SE; reorder columns ###############################
-convert LogOR to OR, StdErrLogOR to StdErr
+#convert LogOR to OR, StdErrLogOR to StdErr
+ml R/4.1.0-foss-2019b
 Rscript /scratch/hx37930/project/psychiatri_PUFAs/shell/convertLog.r PGC_UKB_depression_genome-wide.txt PGC_UKB_depression_genome-wide.convertLog.txt
 
 #header (Raw data)
@@ -90,10 +114,13 @@ Rscript /scratch/hx37930/project/psychiatri_PUFAs/shell/convertLog.r PGC_UKB_dep
 
 ########################################## MDD_22472876: convert hg18 to hg19 using liftover; reorder columns ###############################
 sh /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/MDD/22472876/hg18Tohg19.sh
+sbatch convertOR.sh
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$12,$13,$9,$10,$11}' MDD_22472876.convertOR.txt > MDD_22472876.clean.txt
 
 ########################################## BIP_31043756: reorder columns ###############################
 #zcat MDD2018_ex23andMe.gz  |awk 'BEGIN{FS=OFS="\t"}{print $2,$1,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$17,$18}'  > MDD_29700475.clean.txt
 
-########################################## BIP_34002096: reorder columns ###############################
+########################################## BIP_34002096: reorder columns; add EAF ###############################
 zcat pgc-bip2021-all.vcf.tsv.gz |awk '$1!~/#/{print}' | awk -v FS="\t" -v OFS="\t" 'BEGIN{print "SNP\tCHR\tBP\tA1\tA2\tBETA\tSE\tP\tngt\tFreq_case\tFreq_ctrl\tINFO\tNcase\tNcontrol"}{print $3,$1,$2,$4,$5,$6,$7,$8,$9,$10,$11,$12,$14,$15}' > BIP_34002096.clean.txt
-
+# Add EAF
+awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,"EAF"}' BIP_34002096.txt > BIP_34002096.clean.txt
