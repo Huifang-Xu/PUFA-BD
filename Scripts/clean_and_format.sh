@@ -102,6 +102,8 @@ sbatch convertOR2LogOR.sh
 awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$15,$16,$12,$13,$14,"EAF"}' MDD_29700475.convertOR.txt > MDD_29700475.clean.txt
 awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$15,$16,$12,$13,$14,($6*$13+$7*$14)/($13+$14)}' MDD_29700475.convertOR.txt >> MDD_29700475.clean.txt
 
+awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$15,$16,$12,$13,$14,($6*$13+$7*$14)/($13+$14)}' MDD_29700475.convertOR.txt >> MDD_29700475.cheack.txt
+awk: cmd. line:1: (FILENAME=MDD_29700475.convertOR.txt FNR=9533410) fatal: division by zero attempted
 
 #daner data format (Raw data): https://docs.google.com/document/d/1TWIhr8-qpCXB13WCXcU1_HDio8lC_MeWoAg2jlggrtU/edit#heading=h.4008addvumol
 
@@ -188,3 +190,38 @@ awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,($10*$14+$1
 ##INFO=<ID=DIRE,Number=1,Type=String,Description="direction of effects by cohort">
 
 
+########################################## PTSD_31594949: add EAF; convert OR ##########################################################
+zcat pts_eur_freeze2_overall.results.gz > PTSD_31594949.txt
+sbatch convertOR.sh
+#add EAF
+awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,"EAF",$8,$9,$10,$11,$20,$21,$12,$13,$14,$15,$16,$17,$18,$19}' PTSD_31594949.convertOR.txt > PTSD_31594949.clean.txt
+awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*$17+$7*$18)/($17+$18),$8,$9,$10,$11,$20,$21,$12,$13,$14,$15,$16,$17,$18,$19}' PTSD_31594949.convertOR.txt >> PTSD_31594949.clean.txt
+
+########################################## AN_28494655: add rsID; convert OR ##########################################################
+sbatch convertOR.sh
+# add rsID
+
+
+########################################## AN_31308545: rename column name ##############################################################
+zcat pgcAN2.2019-07.vcf.tsv.gz > AN_31308545.txt
+
+#header
+# REF rename to "A2", ALT rename to "A1"
+##INFO=<ID=BETA,Number=1,Type=Float,Description="beta or ln(OR) of ALT"> 
+##INFO=<ID=SE,Number=1,Type=Float,Description="standard error">
+##INFO=<ID=PVAL,Number=1,Type=Float,Description="P-value">
+##INFO=<ID=NGT,Number=1,Type=Float,Description="number of cohorts genotyped">
+##INFO=<ID=FCAS,Number=1,Type=Float,Description="frequency of ALT in cases">
+##INFO=<ID=FCON,Number=1,Type=Float,Description="frequency of ALT in controls">
+##INFO=<ID=IMPINFO,Number=1,Type=Float,Description="imputation INFO score">
+##INFO=<ID=NEFFDIV2,Number=1,Type=Float,Description="half effective sample size total">
+##INFO=<ID=NCAS,Number=1,Type=Float,Description="effective sample size cases">
+##INFO=<ID=NCON,Number=1,Type=Float,Description="effective sample size controls">
+##INFO=<ID=DIRE,Number=1,Type=String,Description="direction of effects by cohort">
+
+########################################## ASD_30804558: convert OR
+$zcat iPSYCH-PGC_ASD_Nov2017.gz > ASD_30804558.txt
+
+########################################## ASD_28540026: convert OR ##########################################################
+zcat PGC.ASD.euro.all.25Mar2015.txt.gz > ASD_28540026.txt
+sbatch convertOR.sh
