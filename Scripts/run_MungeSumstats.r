@@ -1,5 +1,6 @@
-#ml R/4.1.0
+#ml R/4.1.0-foss-2019b
 
+############################### Install MungeSumstats ####################################
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
@@ -7,7 +8,7 @@ BiocManager::install("MungeSumstats")
 
 library(MungeSumstats)
 
-#install GRCh37
+#install GRCh37 packages
 BiocManager::install("SNPlocs.Hsapiens.dbSNP144.GRCh37")
 BiocManager::install("BSgenome.Hsapiens.1000genomes.hs37d5")
 
@@ -59,3 +60,8 @@ BiocManager::install("BSgenome.Hsapiens.1000genomes.hs37d5")
      allele_flip_check=FALSE)
      }
      #returned location has the updated summary statistics file
+
+# load heade.rda
+load("sumstatsColHeaders.rda")
+sumstatsColHeaders
+
