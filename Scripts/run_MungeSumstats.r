@@ -1,3 +1,6 @@
+######## Attention: MungeSumstats R package only incorperates fewer functions (). If you need other functions of MungeSumstats, such as get_genome_builds(),
+######## you have to download all functions from Github.
+
 #ml R/4.1.0-foss-2019b
 
 ############################### Install MungeSumstats ####################################
@@ -11,6 +14,12 @@ library(MungeSumstats)
 #install GRCh37 packages
 BiocManager::install("SNPlocs.Hsapiens.dbSNP144.GRCh37")
 BiocManager::install("BSgenome.Hsapiens.1000genomes.hs37d5")
+#install GRCh38 packages
+BiocManager::install("SNPlocs.Hsapiens.dbSNP144.GRCh38")
+BiocManager::install("BSgenome.Hsapiens.NCBI.GRCh38")
+
+#download MungeSumstats from GitHub
+git clone https://github.com/neurogenomics/MungeSumstats.git # to /home/hx37930/
 
 # Usage
     MungeSumstats::format_sumstats(
@@ -61,13 +70,24 @@ BiocManager::install("BSgenome.Hsapiens.1000genomes.hs37d5")
      }
      #returned location has the updated summary statistics file
 
+
 # load heade.rda
 load("sumstatsColHeaders.rda")
 sumstatsColHeaders
 
-#test
+############################################# test data ##############################################################################
+library(MungeSumstats)
 library(data.table)
+library("dplyr")
+
+#read test data
 BIP_21926972 <- fread("/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/BIP/21926972/BIP_21926972.txt",sep="\t")
 
 
-git clone https://github.com/neurogenomics/MungeSumstats.git
+git clone https://github.com/neurogenomics/MungeSumstats.git # to /home/hx37930/
+#test other R functions of MungeSumstats from Github
+rpath <- list.files(path="/home/hx37930/MungeSumstats/R",pattern="*.R")
+for (i in 1:length(rpath)){source(paste("/home/hx37930/MungeSumstats/R/",rpath[i],sep=""))}
+#source("/home/hx37930/MungeSumstats/R/get_genome_builds.R")
+
+
