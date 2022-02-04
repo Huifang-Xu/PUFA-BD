@@ -74,7 +74,8 @@ git clone https://github.com/neurogenomics/MungeSumstats.git # to /home/hx37930/
 
 
 # load heade.rda
-load("sumstatsColHeaders.rda")
+load("/home/hx37930/R/x86_64-pc-linux-gnu-library/4.1/MungeSumstats/data/sumstatsColHeaders.rda")
+#load("/home/hx37930/MungeSumstats/ata/sumstatsColHeaders.rda")
 sumstatsColHeaders
 
 ############################################# test data ##############################################################################
@@ -92,6 +93,7 @@ rpath <- list.files(path="/home/hx37930/MungeSumstats/R",pattern="*.R")
 for (i in 1:length(rpath)){source(paste("/home/hx37930/MungeSumstats/R/",rpath[i],sep=""))}
 #source("/home/hx37930/MungeSumstats/R/get_genome_builds.R")
 
+load("/home/hx37930/R/x86_64-pc-linux-gnu-library/4.1/MungeSumstats/data/sumstatsColHeaders.rda")
 is_32bit_windows <- .Platform$OS.type == "windows" && .Platform$r_arch == "i386"
 if (!is_32bit_windows) {
     sumstats_list <- list(ss1 = BIP_21926972)
