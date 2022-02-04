@@ -65,3 +65,9 @@ BiocManager::install("BSgenome.Hsapiens.1000genomes.hs37d5")
 load("sumstatsColHeaders.rda")
 sumstatsColHeaders
 
+#test
+library(data.table)
+BIP_21926972 <- fread("/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/BIP/21926972/BIP_21926972.txt",sep="\t")
+
+
+git clone https://github.com/neurogenomics/MungeSumstats.git
