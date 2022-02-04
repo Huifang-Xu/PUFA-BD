@@ -1,4 +1,4 @@
-######## Note #1: MungeSumstats R package only incorperates fewer functions (). If you need other functions of MungeSumstats, such as get_genome_builds(),
+######## Note #1: MungeSumstats R package contains only part of functions. If you need other functions of MungeSumstats, such as get_genome_builds(),
 ######## you have to download all functions from Github.
 
 ######## Note #2: MungeSumstats does not recognize hg18 genome build. If your GWAS summary statistics are based on hg18 reference genome build,
