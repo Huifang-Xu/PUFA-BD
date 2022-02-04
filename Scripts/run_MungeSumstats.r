@@ -92,4 +92,9 @@ rpath <- list.files(path="/home/hx37930/MungeSumstats/R",pattern="*.R")
 for (i in 1:length(rpath)){source(paste("/home/hx37930/MungeSumstats/R/",rpath[i],sep=""))}
 #source("/home/hx37930/MungeSumstats/R/get_genome_builds.R")
 
+is_32bit_windows <- .Platform$OS.type == "windows" && .Platform$r_arch == "i386"
+if (!is_32bit_windows) {
+    sumstats_list <- list(ss1 = BIP_21926972)
+    ref_genomes <- get_genome_builds(sumstats_list = sumstats_list)
+}
 
