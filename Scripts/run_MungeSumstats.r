@@ -1,5 +1,7 @@
-######## Attention: MungeSumstats R package only incorperates fewer functions (). If you need other functions of MungeSumstats, such as get_genome_builds(),
+######## Attention #1: MungeSumstats R package only incorperates fewer functions (). If you need other functions of MungeSumstats, such as get_genome_builds(),
 ######## you have to download all functions from Github.
+
+
 
 #ml R/4.1.0-foss-2019b
 
