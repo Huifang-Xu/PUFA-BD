@@ -1,11 +1,14 @@
-######## Attention #1: MungeSumstats R package only incorperates fewer functions (). If you need other functions of MungeSumstats, such as get_genome_builds(),
+######## Note #1: MungeSumstats R package only incorperates fewer functions (). If you need other functions of MungeSumstats, such as get_genome_builds(),
 ######## you have to download all functions from Github.
 
+######## Note #2: MungeSumstats does not recognize hg18 genome build. If your GWAS summary statistics are based on hg18 reference genome build,
+######## you will need convert hg18 genome coordinates to hg19/GRCh37 or GRCh38 before munging summary statistics. 
+######## Liftover (https://www.bioconductor.org/packages/release/workflows/html/liftOver.html) can be used to convert hg18 to hg19/GRCh37 or GRCh38.
 
-
+#activate R environment
 #ml R/4.1.0-foss-2019b
 
-############################### Install MungeSumstats ####################################
+###################################################### Install MungeSumstats ##################################################################################
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
@@ -23,7 +26,7 @@ BiocManager::install("BSgenome.Hsapiens.NCBI.GRCh38")
 #download MungeSumstats from GitHub
 git clone https://github.com/neurogenomics/MungeSumstats.git # to /home/hx37930/
 
-# Usage
+############################################################ MungeSumstats Usage #############################################################################
     MungeSumstats::format_sumstats(
        path,
        ref_genome = "GRCh37",
@@ -78,22 +81,23 @@ load("/home/hx37930/R/x86_64-pc-linux-gnu-library/4.1/MungeSumstats/data/sumstat
 #load("/home/hx37930/MungeSumstats/ata/sumstatsColHeaders.rda")
 sumstatsColHeaders
 
-############################################# test data ##############################################################################
+############################################# Test whether MungeSumstats can recognize hg18 genome build########################################################
 library(MungeSumstats)
 library(data.table)
 library("dplyr")
 
-#read test data
-BIP_21926972 <- fread("/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/BIP/21926972/BIP_21926972.txt",sep="\t")
+#read test data (hg18 genome coordinates)
+BIP_21926972 <- fread("/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/BIP/21926972/pgc.bip.full.2012-04.txt",sep="\t")
 
-
-git clone https://github.com/neurogenomics/MungeSumstats.git # to /home/hx37930/
-#test other R functions of MungeSumstats from Github
+#source all R functions of MungeSumstats downloaded from Github
 rpath <- list.files(path="/home/hx37930/MungeSumstats/R",pattern="*.R")
 for (i in 1:length(rpath)){source(paste("/home/hx37930/MungeSumstats/R/",rpath[i],sep=""))}
 #source("/home/hx37930/MungeSumstats/R/get_genome_builds.R")
 
+# load header information
 load("/home/hx37930/R/x86_64-pc-linux-gnu-library/4.1/MungeSumstats/data/sumstatsColHeaders.rda")
+
+# get genome build using function get_genome_builds()
 is_32bit_windows <- .Platform$OS.type == "windows" && .Platform$r_arch == "i386"
 if (!is_32bit_windows) {
     sumstats_list <- list(ss1 = BIP_21926972)
