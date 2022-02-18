@@ -104,3 +104,8 @@ if (!is_32bit_windows) {
     ref_genomes <- get_genome_builds(sumstats_list = sumstats_list)
 }
 
+############################################# Test real data ########################################################
+# change parameter: path, convert_small_p=TRUE, ?compute_n=${sample_size}, ?INFO_filter=0.9 (confirm with Yitang),
+
+
+
