@@ -125,5 +125,17 @@ test_AD_30617256 <- format_sumstats(path=raw_path,
                                     convert_small_p=TRUE, 
                                     allele_flip_check=TRUE,
                                     return_data=TRUE,
-                                    nThread=2) 
+                                    nThread=2,
+                                    log_mungesumstats_msgs=T,
+                                    log_folder="/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/AD/30617256/") 
+
+write.table(test_AD_30617256,file="/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/AD/30617256/test.allele_flip.tsv",
+            quote=FALSE,
+            sep="\t",
+            row.names=FALSE,
+            col.names=TRUE)
+
+
+#df <- format_sumstats(path="/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/SCZ/25056061/SCZ_25056061.clean.txt",ref_genome="GRCh37",convert_small_p=TRUE, allele_flip_check=TRUE,return_data=TRUE,nThread=2,log_mungesumstats_msgs=T,log_folder="/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/SCZ/25056061/")
+
 
