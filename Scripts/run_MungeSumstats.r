@@ -106,8 +106,19 @@ if (!is_32bit_windows) {
 
 ############################################# Test real data ########################################################
 # change parameter: path, ref_genome="GRCh37", convert_small_p=TRUE, ?compute_n=${sample_size}, ?INFO_filter=0.9 (confirm with Yitang), ?N_dropNA (Check result),
-# allele_flip_check=TURE (default is TRUE), ?snp_ids_are_rs_ids (default is TRUE), remove_multi_rs_snp=TRUE (Default is FALSE), sort_coordinates=TRUE,
+# allele_flip_check=TRUE (default is TRUE), ?snp_ids_are_rs_ids (default is TRUE), remove_multi_rs_snp=TRUE (Default is FALSE), sort_coordinates=TRUE,
 # log_mungesumstats_msgs=TRUE (default=FALSE), imputation_ind=TRUE (compare result)
 
+library(MungeSumstats)
+library(data.table)
+library("dplyr")
 
+load("/home/hx37930/R/x86_64-pc-linux-gnu-library/4.1/MungeSumstats/data/sumstatsColHeaders.rda")
+AD_30617256 <- fread("/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/AD/30617256/AD_30617256.clean.txt")
+
+raw_path <- "/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/AD/30617256/AD_30617256.clean.txt"
+test_AD_30617256 <- MungeSumstats::format_sumstats(path=raw_path,
+                                                   ref_genome="GRCh37", 
+                                                   convert_small_p=TRUE, 
+                                                   allele_flip_check=TRUE)
 
