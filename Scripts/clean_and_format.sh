@@ -201,6 +201,17 @@ awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*$17+$7*$18)/($17+$18)
 sbatch convertOR.sh
 # add rsID
 
+#header
+#CHR: Chromosome (hg19)
+#SNP: Marker name
+#BP: Base pair location (hg19)
+#A1: Reference allele for odds ratio (may not be the minor allele)
+#A2: Alternative allele
+#INFO: Imputation quality information score
+#OR: Odds ratio for the effect of the A1 allele
+#SE: Standard error of the OR
+#P: p value for the association test in the meta-analysis
+#ngt: Number of cohorts directly genotyped(vs imputed)
 
 ########################################## AN_31308545: rename column name ##############################################################
 zcat pgcAN2.2019-07.vcf.tsv.gz > AN_31308545.txt
@@ -225,3 +236,48 @@ $zcat iPSYCH-PGC_ASD_Nov2017.gz > ASD_30804558.txt
 ########################################## ASD_28540026: convert OR ##########################################################
 zcat PGC.ASD.euro.all.25Mar2015.txt.gz > ASD_28540026.txt
 sbatch convertOR.sh
+
+########################################## TS_30818990: convert OR (no AF)##########################################################
+sbatch convertOR.sh
+
+#header
+#SNP: Marker name
+#CHR: Chromosome (hg19)
+#BP: Base pair location (hg19)
+#A1: Reference allele for odds ratio (may not be the minor allele)
+#A2: Alternative allele
+#INFO: Imputation information score
+#OR: Odds ratio for the effect of the A1 allele
+#SE: Standard error of the log(OR)
+#P: p value for the association test in the meta-analysis
+
+########################################## ADHD_30478444: convert OR, add AF ##########################################################
+sbatch convertOR.sh
+awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,"EAF",$8,$9,$10,$11,$20,$21,$12,$13,$14,$15,$16,$17,$18,$19}' ADHD_30478444.convertOR.txt > ADHD_30478444.clean.txt
+awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*$17+$7*$18)/($17+$18),$8,$9,$10,$11,$20,$21,$12,$13,$14,$15,$16,$17,$18,$19}' ADHD_30478444.convertOR.txt >> ADHD_30478444.clean.txt
+
+rsID: Marker Name
+Allele1: Effect allele (corresponds to the effect size’s sign; may not be the minor allele)   
+Allele2: Non-effect allele    
+Weight: Total estimated effective sample size
+Zscore:  Z score for association; sign corresponds to the effect of the A1 allele
+P-value: P-value for the test of association
+Direction: Summary of effect direction for each study, with one '+' or '-' per study 
+HetISq: I2 heterogeneity statistic 
+HetChiSq: Heterogeneity test statistic
+HetDf: Heterogeneity test statistic degrees of freedom
+HetPVal:  Heterogeneity p-value
+Total_N: Total number of samples across studies
+Total_NCase: Total number of cases across studies
+Total_NControl: Total number of controls across studies  
+
+########################################## CDG_29906448: convert OR, add AF ##########################################################
+sbatch convertOR.sh
+awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,"EAF",$8,$9,$10,$11,$12,$13,$14,$15}' BipScz_29906448.convertOR.txt > BipScz_29906448.clean.txt
+awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*53555+$7*54065)/(53555+54065),$8,$9,$10,$11,$12,$13,$14,$15}' BipScz_29906448.convertOR.txt >> BipScz_29906448.clean.txt
+
+########################################## CDG_31835028: add AF ##########################################################
+awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,"EAF",$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25}' CDG_31835028.txt > CDG_31835028.clean.txt
+awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,($10*$14+$11*$15)/($14+$15),$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25}' CDG_31835028.txt >> CDG_31835028.clean.txt
+
+
