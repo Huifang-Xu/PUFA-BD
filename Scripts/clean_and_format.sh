@@ -233,6 +233,17 @@ zcat pgcAN2.2019-07.vcf.tsv.gz > AN_31308545.txt
 ########################################## ASD_30804558: convert OR
 $zcat iPSYCH-PGC_ASD_Nov2017.gz > ASD_30804558.txt
 
+#header
+#CHR   Chromosome (hg19)
+#SNP   Marker name
+#BP    Base pair location (hg19)
+#A1    Reference allele for OR (may or may not be minor allele)
+#A2    Alternative allele
+#INFO  Imputation information score
+#OR    Odds ratio for the effect of the A1 allele
+#SE    Standard error of the log(OR)
+#P     P-value for association test in the meta-analysis
+
 ########################################## ASD_28540026: convert OR ##########################################################
 zcat PGC.ASD.euro.all.25Mar2015.txt.gz > ASD_28540026.txt
 sbatch convertOR.sh
