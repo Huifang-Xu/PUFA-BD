@@ -55,9 +55,9 @@ awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$12,$13,$9,$10,$11}' SCZ_2
 #snpid: SNP rs ID
 #hg18chr: hg18 chromosome (1-22) 
 #bp: hg18 base position of SNP
-#a1: reference allele (not necessarily minor allele)
+#a1: reference allele (not necessarily minor allele)---effect allele
 #a2: alternate allele
-#or: odds ratio from logistic regression including PCA covariates (see papers) se standard error of the odds ratio
+#or: odds ratio from logistic regression including PCA covariates (see papers) se standard error of the odds ratio ----A1 allele
 #se: standard error
 #pval: asymptotic p-value
 #info: INFO score from imputation, ratio of variances, can exceed 1
