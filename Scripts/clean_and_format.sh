@@ -133,6 +133,8 @@ awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$12,$13,$9,$10,$11}' MDD_2
 ########################################## BIP_31043756: reorder columns ###############################
 #zcat MDD2018_ex23andMe.gz  |awk 'BEGIN{FS=OFS="\t"}{print $2,$1,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$17,$18}'  > MDD_29700475.clean.txt
 
+#header: daner format; A1 is effect allele
+
 ########################################## BIP_34002096: reorder columns; add EAF ###############################
 zcat pgc-bip2021-all.vcf.tsv.gz |awk '$1!~/#/{print}' | awk -v FS="\t" -v OFS="\t" 'BEGIN{print "SNP\tCHR\tBP\tA1\tA2\tBETA\tSE\tP\tngt\tFreq_case\tFreq_ctrl\tINFO\tNcase\tNcontrol"}{print $3,$1,$2,$4,$5,$6,$7,$8,$9,$10,$11,$12,$14,$15}' > BIP_34002096.clean.txt
 # Add EAF
