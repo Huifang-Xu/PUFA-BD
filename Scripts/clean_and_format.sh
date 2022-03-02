@@ -70,10 +70,10 @@ awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$13,$14,$10,$11,$12}' S
 #snpid: SNP ID (most are rs IDs, some are not)
 #hg19chr: hg19 chromosome (1-22)
 #bp: hg19 base position of SNP
-#a1: reference allele (not necessarily minor allele) 
+#a1: reference allele (not necessarily minor allele) ---- effect allele
 #a2: alternate allele
 #INFO: imputation INFO score
-#OR: odds ratio from logistic regression including PCA covariates (see paper)
+#OR: odds ratio from logistic regression including PCA covariates (see paper) --- A1
 #SE: standard error of the odds ratio
 #Pval: asymptotic p-value
 #1kgminor: minor allele used in 1000 Genomes Project
