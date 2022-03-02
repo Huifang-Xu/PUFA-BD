@@ -27,6 +27,10 @@ sbatch convertOR2LogOR.sh
 awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$18,$19,"EAF",$12,$13,$14,$15,$16,$17}' SCZ_25056061.convertOR.txt > SCZ_25056061.clean.txt
 awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$18,$19,($6*35476+$7*46839)/(35476+46839),$12,$13,$14,$15,$16,$17}' SCZ_25056061.convertOR.txt >> SCZ_25056061.clean.txt
 
+#header: 
+#Column A1 A2 has the SNP alleles, with the first allele (a1) the reference allele for the frequency and odds ratio columns. Frq=frequency of allele 1
+#OR=odds ratio for allele 1
+
 ########################################## SCZ_21926974: convert hg18 to hg19 using liftover; reorder columns ###############################
 # build hg18 BED file according to raw summary statistics
 # header: hg18chr start   end     SNP:hg18chr:BP:A1:A2:OR:SE:P:INFO:ngt:CEUaf
