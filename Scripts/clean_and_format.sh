@@ -195,7 +195,7 @@ awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$11,$12,$10}' ANX_26754
 #Allele1: reference allele (paper: First allele is the reference allele, for which the effect is reported.) new name: A1
 #Allele2: alternative allele. new name: A2
 #Freq1: allele frequency of Allele1. new name: EAF
-#Effect: regression coefficient (logistic regression for CC; linear regression for FS). new name: OR
+#Effect: regression coefficient (logistic regression for CC; linear regression for FS). new name: BETA
 #StdErr: standard error. new name: SE
 #P.value: p-value. new name: P
 #TotalN: number of subjects
