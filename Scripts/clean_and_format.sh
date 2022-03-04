@@ -140,6 +140,21 @@ zcat pgc-bip2021-all.vcf.tsv.gz |awk '$1!~/#/{print}' | awk -v FS="\t" -v OFS="\
 # Add EAF
 awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,"EAF"}' BIP_34002096.txt > BIP_34002096.clean.txt
 
+#header
+##INFO=<ID=A1,Number=1,Type=Character,Description="SNP reference allele for freq, beta, or
+##INFO=<ID=A2,Number=1,Type=Character,Description="SNP alternate allele">
+##INFO=<ID=BETA,Number=1,Type=Float,Description="beta or ln(OR) of A1">
+##INFO=<ID=SE,Number=1,Type=Float,Description="standard error">
+##INFO=<ID=PVAL,Number=1,Type=Float,Description="P-value">
+##INFO=<ID=NGT,Number=1,Type=Float,Description="number of cohorts genotyped">
+##INFO=<ID=FCAS,Number=1,Type=Float,Description="frequency of A1 in cases">
+##INFO=<ID=FCON,Number=1,Type=Float,Description="frequency of A1 in controls">
+##INFO=<ID=IMPINFO,Number=1,Type=Float,Description="imputation INFO score">
+##INFO=<ID=NEFFDIV2,Number=1,Type=Float,Description="half effective sample size total">
+##INFO=<ID=NCAS,Number=1,Type=Float,Description="effective sample size cases">
+##INFO=<ID=NCON,Number=1,Type=Float,Description="effective sample size controls">
+##INFO=<ID=DIRE,Number=1,Type=String,Description="direction of effects by cohort">
+
 ########################################## BIP_31043756: add EAF, convert OR, reorder columns ################################################
 zcat daner_PGC_BIP32b_mds7a_0416a.gz > BIP_31043756.txt
 sbatch convertOR.sh
