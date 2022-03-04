@@ -167,9 +167,22 @@ sh /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/BIP/2
 sbatch convertOR.sh
 awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$12,$13,$9,$10,$11}' BIP_21926972.convertOR.txt > BIP_21926972.clean.txt
 
+###header: A1 is effect allele
+
 ########################################## OCD_28761083: convert OR to logOR #################################################################
 zcat ocd_aug2017.gz > OCD_28761083.txt
 sbatch convertOR.sh
+
+#header
+#CHR: Chromosome (hg19)
+#SNP: Marker name   
+#BP: Base pair location (hg19)
+#A1: Reference allele for OR (may or may not be minor allele)
+#A2: Alternative allele
+#INFO: Imputation information score
+#OR: Odds ratio for the effect of the A1 allele
+#SE: Standard error of the log(OR)
+#P: P-value for association test in the meta-analysis
 
 ########################################## ANX_26754954: convert OR to logOR, rename column name #################################################################
 sbatch convertOR.sh
