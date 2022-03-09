@@ -351,4 +351,15 @@ awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*53555+$7*54065)/(5355
 awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,"EAF",$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25}' CDG_31835028.txt > CDG_31835028.clean.txt
 awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,($10*$14+$11*$15)/($14+$15),$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25}' CDG_31835028.txt >> CDG_31835028.clean.txt
 
+########################################## GWAS ID: ieu-b-7 #########################################################################
+#header
+##FORMAT=<ID=ES,Number=A,Type=Float,Description="Effect size estimate relative to the alternative allele">
+##FORMAT=<ID=SE,Number=A,Type=Float,Description="Standard error of effect size estimate">
+##FORMAT=<ID=LP,Number=A,Type=Float,Description="-log10 p-value for effect estimate">
+##FORMAT=<ID=AF,Number=A,Type=Float,Description="Alternate allele frequency in the association study">
+##FORMAT=<ID=SS,Number=A,Type=Float,Description="Sample size used to estimate genetic effect">
+##FORMAT=<ID=EZ,Number=A,Type=Float,Description="Z-score provided if it was used to derive the EFFECT and SE
+##FORMAT=<ID=SI,Number=A,Type=Float,Description="Accuracy score of summary data imputation">
+##FORMAT=<ID=NC,Number=A,Type=Float,Description="Number of cases used to estimate genetic effect">
+
 
