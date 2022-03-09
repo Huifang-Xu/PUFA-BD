@@ -352,6 +352,10 @@ awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,"EAF",$12,
 awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,($10*$14+$11*$15)/($14+$15),$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25}' CDG_31835028.txt >> CDG_31835028.clean.txt
 
 ########################################## GWAS ID: ieu-b-7 #########################################################################
+zcat ieu-b-7.vcf.gz | awk 'BEGIN{FS=OFS="\t"}$1!~/#/{print $1,$2,$3,$4,$5,$10}' |awk -v OFS="\t" 'BEGIN{FS=":";print "CHR\tPOS\tSNP\tREF\tALT\tBETA\tSE\tAF\tlP"}{print $1,$2,$4,$3}' > ieu-b-7.txt
+#convert lP to p
+
+
 #header
 ##FORMAT=<ID=ES,Number=A,Type=Float,Description="Effect size estimate relative to the alternative allele">
 ##FORMAT=<ID=SE,Number=A,Type=Float,Description="Standard error of effect size estimate">
