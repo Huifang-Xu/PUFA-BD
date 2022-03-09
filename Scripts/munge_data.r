@@ -3,6 +3,9 @@
 ## Usage: Rscript munge_data.r $workDir $InputFileName $OutputFileName
 ## Example: Rscript munge_data.r /scratch/psychiatric_disorders/AD/30617256  AD_30617256.clean.a2effect.txt AD_30617256.a2effect.munge.tsv
 
+# Input parameters
+Args <- commandArgs()
+
 # Load required packages
 library(data.table)
 
