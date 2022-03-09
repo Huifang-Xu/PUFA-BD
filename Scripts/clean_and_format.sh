@@ -354,7 +354,7 @@ awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,($10*$14+$1
 ########################################## GWAS ID: ieu-b-7 #########################################################################
 zcat ieu-b-7.vcf.gz | awk 'BEGIN{FS=OFS="\t"}$1!~/#/{print $1,$2,$3,$4,$5,$10}' |awk -v OFS="\t" 'BEGIN{FS=":";print "CHR\tPOS\tSNP\tREF\tALT\tBETA\tSE\tAF\tlP"}{print $1,$2,$4,$3}' > ieu-b-7.txt
 #convert lP to p
-
+sbatch convert_NegLogP2P.sh
 
 #header
 ##FORMAT=<ID=ES,Number=A,Type=Float,Description="Effect size estimate relative to the alternative allele">
