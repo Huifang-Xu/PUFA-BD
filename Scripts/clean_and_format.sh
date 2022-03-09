@@ -324,6 +324,9 @@ sbatch convertOR.sh
 awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,"EAF",$8,$9,$10,$11,$20,$21,$12,$13,$14,$15,$16,$17,$18,$19}' ADHD_30478444.convertOR.txt > ADHD_30478444.clean.txt
 awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*$17+$7*$18)/($17+$18),$8,$9,$10,$11,$20,$21,$12,$13,$14,$15,$16,$17,$18,$19}' ADHD_30478444.convertOR.txt >> ADHD_30478444.clean.txt
 
+#header: daner format
+
+########################################################################################################################################
 rsID: Marker Name
 Allele1: Effect allele (corresponds to the effect size’s sign; may not be the minor allele)   
 Allele2: Non-effect allele    
