@@ -231,6 +231,26 @@ sbatch convertOR.sh
 awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,"EAF",$8,$9,$10,$11,$20,$21,$12,$13,$14,$15,$16,$17,$18,$19}' PTSD_31594949.convertOR.txt > PTSD_31594949.clean.txt
 awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*$17+$7*$18)/($17+$18),$8,$9,$10,$11,$20,$21,$12,$13,$14,$15,$16,$17,$18,$19}' PTSD_31594949.convertOR.txt >> PTSD_31594949.clean.txt
 
+#header
+#chr: chromosome
+#SNP: SNP 
+#BP: Position (base pairs)
+#A1: Coded Allele
+#A2: Non Coded Allele
+#FRQ_A_: Frequency of coded allele in cases
+#FRQ_U_: Frequency of coded allele in controls
+#INFO: Weighted average information score (weighted by Neff)
+#OR: Odds ratioSEStandard error of log odds (A1)
+#P: p-value of odds ratio
+#ngt: number of studies where marker is directly genotyped
+#Direction: effect directions
+#HetISqt: Heterogeneity I-squared
+#HetDf: degrees of freedom for heterogeneity test
+#HetPVa: p-value of heterogeneity test
+#Nca: Number of cases
+#Nco: number of controls
+#Neff: effective sample size (sum of Neff across all studies, where neff calculated within study as 4*(1/(1/n cases + 1/n controls))
+
 ########################################## AN_28494655: add rsID; convert OR ##########################################################
 sbatch convertOR.sh
 # add rsID
@@ -281,6 +301,9 @@ $zcat iPSYCH-PGC_ASD_Nov2017.gz > ASD_30804558.txt
 ########################################## ASD_28540026: convert OR ##########################################################
 zcat PGC.ASD.euro.all.25Mar2015.txt.gz > ASD_28540026.txt
 sbatch convertOR.sh
+
+#header: A1 is effect allele 
+
 
 ########################################## TS_30818990: convert OR (no AF)##########################################################
 sbatch convertOR.sh
