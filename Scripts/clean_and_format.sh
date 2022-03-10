@@ -344,14 +344,49 @@ Total_NControl: Total number of controls across studies
 
 ########################################## CDG_29906448: convert OR, add AF ##########################################################
 sbatch convertOR.sh
-awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,"EAF",$8,$9,$10,$11,$12,$13,$14,$15}' BipScz_29906448.convertOR.txt > BipScz_29906448.clean.txt
-awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*53555+$7*54065)/(53555+54065),$8,$9,$10,$11,$12,$13,$14,$15}' BipScz_29906448.convertOR.txt >> BipScz_29906448.clean.txt
+awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,"EAF",$8,$9,$10,$11,$12,$13,$14,$15}' CDG_29906448.convertOR.txt > CDG_29906448.clean.txt
+awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*53555+$7*54065)/(53555+54065),$8,$9,$10,$11,$12,$13,$14,$15}' CDG_29906448.convertOR.txt >> CDG_29906448.clean.txt
+
+#header
+#CHR: Chromosome
+#SNP: Variant
+#BP: Genomic position
+#A1: Effect allele(used for frequency and OR)
+#A2: Non-effect allele
+#FRQ_A: Frequency in cases (header includes number of cases)
+#FRQ_U: Frequency in controls (header includes number of controls)
+#INFO: Information score representing quality of imputation
+#OR: Odds ratio based on A1
+#SE: Standard error
+#P: P-value
+#Direction: Direction of effect of each included cohort
+#HetPVa: Heterogeneity test p-value across included cohorts
+
+########################################## CDG_31926635 ##########################################################
+#header
+#rsid = Variant identifier    
+#chr:pos = Variant chromosome and base position    
+#effect_allele = Tested allele    
+#neffect_allele = Non-tested allele      
+#effect_allele_frequency = Tested allele frequency     
+#effects = Direction of effects across studies     
+#beta = Beta (logOR)    
+#se = Standard error (on logOR scale)
+#z = Z-score (NB sign of z is OPPOSITE to sign of beta)    
+#z_se = Standard error of z-score        
+#p_wald = P from Wald test (used in analyses)     ###used in analyses
+#p_corrected = Corrected p-value from the p-value based meta-analysis. This is the adapted p-value from Province and Borecki (2013). (NOT USED IN ANALYSES)         
+#p_stouffer = Fixed effects inverse variance based p-value. This is an ** uncorrected ** p-value and should be used only for comparison purposes.    
+#n = Combined N (as sum of input Ns)
+
 
 ########################################## CDG_31835028: add AF ##########################################################
 awk 'BEGIN{FS=OFS="\t"}NR==1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,"EAF",$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25}' CDG_31835028.txt > CDG_31835028.clean.txt
 awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,($10*$14+$11*$15)/($14+$15),$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25}' CDG_31835028.txt >> CDG_31835028.clean.txt
 
-########################################## GWAS ID: ieu-b-7 #########################################################################
+
+
+########################################## PD_ieu-b-7; DE_ukb-b-20045; #########################################################################
 zcat ieu-b-7.vcf.gz | awk 'BEGIN{FS=OFS="\t"}$1!~/#/{print $1,$2,$3,$4,$5,$10}' |awk -v OFS="\t" 'BEGIN{FS=":";print "CHR\tPOS\tSNP\tREF\tALT\tBETA\tSE\tAF\tlP"}{print $1,$2,$4,$3}' > ieu-b-7.txt
 #convert lP to p
 sbatch convert_NegLogP2P.sh
@@ -366,4 +401,15 @@ sbatch convert_NegLogP2P.sh
 ##FORMAT=<ID=SI,Number=A,Type=Float,Description="Accuracy score of summary data imputation">
 ##FORMAT=<ID=NC,Number=A,Type=Float,Description="Number of cases used to estimate genetic effect">
 
+########################################## ADD_30336701 #########################################################################
 
+
+#header
+#chr: the chromosome number on which the SNP is located (build 37, hg19)
+snpid/rsid: the SNP IDBPthe base pair position of the SNP (build 37, hg19)
+A2/a_0: the alternate allele
+A1/a_1: the effect allele
+EAF/af: the effect allele frequency
+p: the association test P value
+beta: the effect size
+se: the standard error of the effect size
