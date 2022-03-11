@@ -413,3 +413,24 @@ EAF/af: the effect allele frequency
 p: the association test P value
 beta: the effect size
 se: the standard error of the effect size
+
+########################################### CDG_23453885: convert hg18 to hg19; convert OR to BETA #########################################
+#convert hg18 to hg19
+sh /scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/MDD/22472876/hg18Tohg19.sh
+#convert OR to BETA
+sbatch convertOR.sh
+
+#header (Raw data)
+#snpid: SNP rs ID
+#hg18chr: hg18 chromosome (1-22) 
+#bp: hg18 base position of SNP
+#a1: reference allele (not necessarily minor allele)---effect allele
+#a2: alternate allele
+#or: odds ratio from logistic regression including PCA covariates (see papers) se standard error of the odds ratio ----A1 allele
+#se: standard error
+#pval: asymptotic p-value
+#info: INFO score from imputation, ratio of variances, can exceed 1
+#ngt: number of studies in which this SNP directly genotyped (not imputed) 
+#CEUaf: frequency of a1 in HapMap3 CEU (HapMap2 for BIP)
+
+
