@@ -9,7 +9,8 @@ Args <- commandArgs()
 df <- read.table(file=Args[6],header=T,sep="\t")
 
 #Define inputs and output
-colNo_OR <- Args[8]
+colNo_P <- Args[8]
+colNo_OR <- Args[9]
 
 #Convert OR to lnOR (logOR), add a new column to store lnOR (logOR)
 logOR <- 1:nrow(df)
