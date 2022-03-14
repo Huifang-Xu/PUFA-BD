@@ -23,8 +23,6 @@ for (i in 1:length(rpath)){
 # Load header information
 load("/home/hx37930/R/x86_64-pc-linux-gnu-library/4.1/MungeSumstats/data/sumstatsColHeaders.rda")
 
-#df <- fread("/scratch/hx37930/project/psychiatri_PUFAs/01.data/psychiatric_disorders/AD/30617256/AD_30617256.clean.txt")
-
 df <- format_sumstats(path=inFile,
                       ref_genome="GRCh37",
                       convert_small_p=TRUE,
