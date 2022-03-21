@@ -406,13 +406,13 @@ sbatch convert_NegLogP2P.sh
 
 #header
 #chr: the chromosome number on which the SNP is located (build 37, hg19)
-snpid/rsid: the SNP IDBPthe base pair position of the SNP (build 37, hg19)
-A2/a_0: the alternate allele
-A1/a_1: the effect allele
-EAF/af: the effect allele frequency
-p: the association test P value
-beta: the effect size
-se: the standard error of the effect size
+#snpid/rsid: the SNP IDBPthe base pair position of the SNP (build 37, hg19)
+#A2/a_0: the alternate allele
+#A1/a_1: the effect allele
+#EAF/af: the effect allele frequency
+#p: the association test P value
+#beta: the effect size
+#se: the standard error of the effect size
 
 ########################################### CDG_23453885: convert hg18 to hg19; convert OR to BETA #########################################
 #convert hg18 to hg19
