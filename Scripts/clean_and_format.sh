@@ -433,4 +433,7 @@ sbatch convertOR.sh
 #ngt: number of studies in which this SNP directly genotyped (not imputed) 
 #CEUaf: frequency of a1 in HapMap3 CEU (HapMap2 for BIP)
 
+##### remove InDels
+awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if(length($4)==1 && length($5)==1)print $0}' AD/30617256/AD_30617256.a1.tsv |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if($4!="D" || $4!="I")print $0}' >  /work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/AD_30617256.clean_munge.A1.rmInDel.txt
+
 
