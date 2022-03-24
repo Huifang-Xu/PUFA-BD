@@ -436,4 +436,8 @@ sbatch convertOR.sh
 ##### remove InDels
 awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if(length($4)==1 && length($5)==1)print $0}' AD/30617256/AD_30617256.a1.tsv |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if($4!="D" && $4!="I")print $0}' >  /work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/AD_30617256.clean_munge.A1.rmInDel.txt
 
-
+##### remove SNPs with large effect size
+zcat ALA_CHARGE.ldsc.sumstats.gz |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if($4=="")print;else{if($4>-4 && $4<4)print}}' > ALA_CHARGE.ldsc.sumstats.rmLarES.txt
+#test
+zcat ALA_CHARGE.ldsc.sumstats.gz |awk 'BEGIN{FS=OFS="\t"}NR>1{if($4!="")print}' | awk 'BEGIN{FS=OFS="\t"}{if($4<-4 || $4>4)print}' |wc -l
+zcat ALA_CHARGE.ldsc.sumstats.gz |wc -l
