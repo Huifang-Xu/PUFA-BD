@@ -448,6 +448,6 @@ zcat met-d-DHA.convertP.munge.sumstats.gz > DHA_old.sumstats.txt
 zcat DHA_UKB.ldsc.sumstats.gz > DHA_new.sumstats.txt
 awk -F "\t" 'NR==FNR{a=$1"_"$2"_"$3;b[a]=$1"_"$2"_"$3"\t"$0;next}{OFS="\t";c=$1"_"$3"_"$2;d[c]=$1"_"$3"_"$2"\t"$0;if(b[c]){print d[c],b[c]}}'  DHA_old.sumstats.txt DHA_new.sumstats.txt > DHA_new_old.txt
 sed -i '1iSNP_A2_A1_new\tSNP_new\tA1_new\tA2_new\tZ_new\tN_new\tSNP_A1_A2_old\tSNP_old\tA1_old\tA2_old\tZ_old\tN_old' DHA_new_old.txt
-
+awk -F '\t' '{if($5==$11)print}' DHA_new_old.txt |wc -l # zscore_new == zscore_old
 
 
