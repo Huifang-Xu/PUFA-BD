@@ -2,8 +2,9 @@
 
 #This script will do cor.test to estimate phenotypic correlation among 14 fatty acids.
 
-#load package
+#load packages
 library(tidyverse)
+library(reshape2)
 
 #read phenotypic data
 df <- read.table(file="phenotype.txt",sep="\t")
