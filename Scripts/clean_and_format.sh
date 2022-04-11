@@ -458,10 +458,11 @@ awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if(length($4)==1 && length($5)==1)print 
 
 #check shared rsID between INS_ukb-b-3957 vs MDD_30718901, and INS_ukb-b-3957 vs SCZ_21926974
 awk -F '\t' 'NR==FNR{a=$1;b[a]=$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6;next}{OFS="\t";c=$1;d[c]=$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$10;if(b[c]){print d[c],b[c]}}' MDD_30718901.snp.txt INS_ukb-b-3957.snp.txt > INS_ukb-b-3957_vs_MDD_30718901.sharedID.snp.txt
+awk -F '\t' 'NR==FNR{a=$1;b[a]=$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$12;next}{OFS="\t";c=$1;d[c]=$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$10;if(b[c]){print d[c],b[c]}}' SCZ_21926974.snp.txt INS_ukb-b-3957.snp.txt > INS_ukb-b-3957_vs_SCZ_21926974.sameID.snp.txt
 
 #check shared CHR_POS between INS_ukb-b-3957 vs MDD_30718901, and INS_ukb-b-3957 vs SCZ_21926974
 awk -F '\t' 'NR==FNR{a=$2"_"$3;b[a]=$2"_"$3"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6;next}{OFS="\t";c=$2"_"$3;d[c]=$2"_"$3"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$10;if(b[c]){print d[c],b[c]}}' MDD_30718901.upper.snp.txt INS_ukb-b-3957.snp.txt > INS_ukb-b-3957_vs_MDD_30718901_upper.sharedPOS.snp.txt
-
+awk -F '\t' 'NR==FNR{a=$2"_"$3;b[a]=$2"_"$3"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$12;next}{OFS="\t";c=$2"_"$3;d[c]=$2"_"$3"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$10;if(b[c]){print d[c],b[c]}}' SCZ_21926974.snp.txt INS_ukb-b-3957.snp.txt > INS_ukb-b-3957_vs_SCZ_21926974.samePOS.snp.txt
 
 #check shared rsID_CHR_POS between INS_ukb-b-3957 vs MDD_30718901, and INS_ukb-b-3957 vs SCZ_21926974
 awk -F '\t' 'NR==FNR{a=$1"_"$2"_"$3;b[a]=$1"_"$2"_"$3"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6;next}{OFS="\t";c=$1"_"$2"_"$3;d[c]=$1"_"$2"_"$3"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$10;if(b[c]){print d[c],b[c]}}' MDD_30718901.snp.txt INS_ukb-b-3957.snp.txt > INS_ukb-b-3957_vs_MDD_30718901.sharedIDpos.snp.txt
@@ -473,6 +474,9 @@ awk -F '\t' 'NR==FNR{a=$1"_"$2"_"$3"_"$4"_"$5;b[a]=$1"_"$2"_"$3"_"$4"_"$5"\t"$1"
 awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{FRQ_diff=$7-$14;if(FRQ_diff>0.1 ||FRQ_diff<-0.1) print $0,FRQ_diff}' INS_ukb-b-3957_vs_MDD_30718901_upper.sharedIDposA1A2.snp.txt > INS_ukb-b-3957_vs_MDD_30718901_upper.sharedIDposA1A2.snp.freq_diff.txt
 awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{FRQ_diff=$7-$14;if(FRQ_diff<0.1 && FRQ_diff>-0.1) print $0,FRQ_diff}' INS_ukb-b-3957_vs_MDD_30718901_upper.sharedIDposA1A2.snp.txt > INS_ukb-b-3957_vs_MDD_30718901_upper.sharedIDposA1A2.snp.freq.txt
 wc -l INS_ukb-b-3957_vs_MDD_30718901_upper.sharedIDposA1A2.snp.freq.txt INS_ukb-b-3957_vs_MDD_30718901_upper.sharedIDposA1A2.snp.freq_diff.txt
+
+awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{FRQ_diff=$7-$14;if(FRQ_diff>0.1 ||FRQ_diff<-0.1) print $0,FRQ_diff}' INS_ukb-b-3957_vs_SCZ_21926974.sameIDposA1A2.snp.txt > INS_ukb-b-3957_vs_SCZ_21926974.sameIDposA1A2.snp.freq_diff.txt
+awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{FRQ_diff=$7-$14;if(FRQ_diff<0.1 && FRQ_diff>-0.1) print $0,FRQ_diff}' INS_ukb-b-3957_vs_SCZ_21926974.sameIDposA1A2.snp.txt > INS_ukb-b-3957_vs_SCZ_21926974.sameIDposA1A2.snp.freq.txt
 
 
 
