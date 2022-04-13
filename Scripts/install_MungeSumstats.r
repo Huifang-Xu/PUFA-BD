@@ -22,9 +22,9 @@ BiocManager::install("SNPlocs.Hsapiens.dbSNP144.GRCh38")
 BiocManager::install("BSgenome.Hsapiens.NCBI.GRCh38")
 
 ##### Installation from GitHub
-git clone https://github.com/neurogenomics/MungeSumstats.git # to /home/hx37930/
+git clone https://github.com/neurogenomics/MungeSumstats.git 
 
-##### Installation development version using "devtools"
+##### Installation development version using "devtools" -- recommend
 install.packages("devtools")
 install_github("https://github.com/neurogenomics/MungeSumstats")
 
