@@ -479,5 +479,6 @@ wc -l INS_ukb-b-3957_vs_MDD_30718901_upper.sharedIDposA1A2.snp.freq.txt INS_ukb-
 awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{FRQ_diff=$7-$14;if(FRQ_diff>0.1 ||FRQ_diff<-0.1) print $0,FRQ_diff}' INS_ukb-b-3957_vs_SCZ_21926974.sameIDposA1A2.snp.txt > INS_ukb-b-3957_vs_SCZ_21926974.sameIDposA1A2.snp.freq_diff.txt
 awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{FRQ_diff=$7-$14;if(FRQ_diff<0.1 && FRQ_diff>-0.1) print $0,FRQ_diff}' INS_ukb-b-3957_vs_SCZ_21926974.sameIDposA1A2.snp.txt > INS_ukb-b-3957_vs_SCZ_21926974.sameIDposA1A2.snp.freq.txt
 
-
+#remove Indels and change A1A2 after munging data by MungeSumstats
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$5,$4,$8,$9,$10,$11,$12,$13,$14,$15}' AD_30617256.a2effect.munge.new2.tsv | awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if(length($4)==1 && length($5)==1)print $0}' |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if($4!="D" && $4!="I")print $0}' > AD_30617256.a1effect.munge.rmInDels.tsv
 
