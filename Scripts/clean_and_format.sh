@@ -466,6 +466,7 @@ awk -F '\t' 'NR==FNR{a=$2"_"$3;b[a]=$2"_"$3"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$12
 
 #check shared rsID_CHR_POS between INS_ukb-b-3957 vs MDD_30718901, and INS_ukb-b-3957 vs SCZ_21926974
 awk -F '\t' 'NR==FNR{a=$1"_"$2"_"$3;b[a]=$1"_"$2"_"$3"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6;next}{OFS="\t";c=$1"_"$2"_"$3;d[c]=$1"_"$2"_"$3"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$10;if(b[c]){print d[c],b[c]}}' MDD_30718901.snp.txt INS_ukb-b-3957.snp.txt > INS_ukb-b-3957_vs_MDD_30718901.sharedIDpos.snp.txt
+awk -F '\t' 'NR==FNR{a=$1"_"$2"_"$3;b[a]=$1"_"$2"_"$3"_"$4"_"$5"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6;next}{OFS="\t";c=$1"_"$2"_"$3;d[c]=$1"_"$2"_"$3"_"$4"_"$5"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$9;if(b[c]){print d[c],b[c]}}' CHARGE_DHA.sumstats_A2_as_alt.txt UKB_PUFA_pct.sumstats_A2_as_alt.txt > sameID.txt
 
 #check shared rsID_CHR_POS_A1_A2 between INS_ukb-b-3957 vs MDD_30718901, and INS_ukb-b-3957 vs SCZ_21926974
 awk -F '\t' 'NR==FNR{a=$1"_"$2"_"$3"_"$4"_"$5;b[a]=$1"_"$2"_"$3"_"$4"_"$5"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6;next}{OFS="\t";c=$1"_"$2"_"$3"_"$4"_"$5;d[c]=$1"_"$2"_"$3"_"$4"_"$5"\t"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$10;if(b[c]){print d[c],b[c]}}' MDD_30718901.upper.snp.txt INS_ukb-b-3957.snp.txt > INS_ukb-b-3957_vs_MDD_30718901_upper.sharedIDposA1A2.snp.txt
