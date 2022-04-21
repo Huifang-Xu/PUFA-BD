@@ -1,4 +1,4 @@
-#! bin/bash
+#! /bin/bash
 
 # This script aims to extract summary lines from each pair-wise LDSC result file
 
