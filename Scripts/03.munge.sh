@@ -12,6 +12,7 @@ source activate ldsc
     --sumstats met-d-Omega_3.convertP.txt \ #GWAS summary statistics data of Phenotype 1
     --N 114999 \ #sample size of phenotype 1 
     --out Omega_3 \ #Output file prefix
+    --signed-sumstats BETA,0 \ # Define effect column
     --merge-alleles w_hm3.snplist #Hapmap3 SNPs (containing well-imoutated SNPs)
 
 #munge data for Phenotype 2
