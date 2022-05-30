@@ -256,6 +256,8 @@ awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*$17+$7*$18)/($17+$18)
 # (i.e., excluding related individuals from the PGC family-based samples; N cases = 14,080; N controls = 343,726)
 zcat CUD_EUR_casecontrol_public_11.14.2020.gz> CUD_33096046.txt
 sbatch sub_munge.sh
+#remove indels and duplicate rows
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$5,$4,$7,$8,$9}' CUD_33096046.a2effect.munge.new2.tsv |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if(length($4)==1 && length($5)==1)print $0}' |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if($4!="D" && $4!="I")print $0}' |uniq > CUD_33096046.a1effect.munge.rmInDels.uniq.tsv
 
 #Header
 # CHR 	Chromosome (hg19)
