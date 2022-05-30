@@ -251,6 +251,28 @@ awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,($6*$17+$7*$18)/($17+$18)
 #Nco: number of controls
 #Neff: effective sample size (sum of Neff across all studies, where neff calculated within study as 4*(1/(1/n cases + 1/n controls))
 
+########################################## CUD_33096046: rename column name #################################################################
+# CUD_EUR_casecontrol_public_11.14.2020.gz (CUD cases vs. controls European-ancestry cohorts, only including unrelated individuals from genotyped cohorts 
+# (i.e., excluding related individuals from the PGC family-based samples; N cases = 14,080; N controls = 343,726)
+zcat CUD_EUR_casecontrol_public_11.14.2020.gz> CUD_33096046.txt
+sbatch sub_munge.sh
+
+#Header
+# CHR 	Chromosome (hg19)
+# SNP 	Marker name
+# BP 	Base pair location (hg19)
+# A1 	Effect allele (corresponds to the effect size’s sign; may not be the minor allele)
+# A2 	Non-effect allele	
+# N 	Total sample size
+# N_CAS 	Number of cases
+# N_CON	Number of controls
+# Z 	Z score for association; sign corresponds to the effect of the A1 allele 
+#	P 	P-value for the test of association 
+#	Beta 	Log(odds ratio) for the effect of the A1 allele 
+#	SE 	Standard error of the log(OR) 
+#	P 	P-value for the test of association 
+
+
 ########################################## AN_28494655: add rsID; convert OR ##########################################################
 sbatch convertOR.sh
 # add rsID
