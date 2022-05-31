@@ -275,6 +275,14 @@ awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$5,$4,$7,$8,$9}' CUD_33096046.a2effect.mu
 #	P 	P-value for the test of association 
 
 
+########################################## OD_32099098 ##########################################################
+zcat OD_cases_vs._opioidunexposed_controls_in_Europeanancestry_cohorts.gz > OD_32099098.txt
+
+awk 'BEGIN{FS=OFS="\t"}{print $1,toupper($2),toupper($3),$4,$5,$6,$7,$8,$9,$10,$11,$12}' OD_32099098.txt > OD_32099098.clean.a2effect.txt
+sbatch sub_munge.sh
+#remove indels and duplicate rows
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$5,$4,$7,$8,$9}' CUD_33096046.a2effect.munge.new2.tsv |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if(length($4)==1 && length($5)==1)print $0}' |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if($4!="D" && $4!="I")print $0}' |uniq > CUD_33096046.a1effect.munge.rmInDels.uniq.tsv
+
 ########################################## AN_28494655: add rsID; convert OR ##########################################################
 sbatch convertOR.sh
 # add rsID
