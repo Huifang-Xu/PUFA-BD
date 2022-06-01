@@ -109,6 +109,9 @@ awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$15,$16,$12
 awk 'BEGIN{FS=OFS="\t"}NR>1{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$15,$16,$12,$13,$14,($6*$13+$7*$14)/($13+$14)}' MDD_29700475.convertOR.txt >> MDD_29700475.cheack.txt
 awk: cmd. line:1: (FILENAME=MDD_29700475.convertOR.txt FNR=9533410) fatal: division by zero attempted
 
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12}' MDD_29700475.txt > MDD_29700475.clean.a2effect.txt
+
+
 #daner data format (Raw data): https://docs.google.com/document/d/1TWIhr8-qpCXB13WCXcU1_HDio8lC_MeWoAg2jlggrtU/edit#heading=h.4008addvumol
 
 ########################################## MDD_30718901: convert logOR and SE; reorder columns ###############################
@@ -282,6 +285,15 @@ awk 'BEGIN{FS=OFS="\t"}{print $1,toupper($2),toupper($3),$4,$5,$6,$7,$8,$9,$10,$
 sbatch sub_munge.sh
 #remove indels and duplicate rows
 awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$5,$4,$7,$8,$9}' CUD_33096046.a2effect.munge.new2.tsv |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if(length($4)==1 && length($5)==1)print $0}' |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if($4!="D" && $4!="I")print $0}' |uniq > CUD_33096046.a1effect.munge.rmInDels.uniq.tsv
+
+########################################## ALZ_34493870 ##########################################################
+zcat PGCALZ2sumstatsExcluding23andMe.txt.gz > ALZ_34493870.txt
+#remove indels and duplicate rows
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$5,$4,$6,$7}' ALZ_34493870.a2effect.munge.new2.tsv |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if(length($4)==1 && length($5)==1)print $0}' |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if($4!="D" && $4!="I")print $0}' |uniq >  ALZ_34493870.a1effect.munge.rmInDels.uniq.tsv
+
+########################################## NE_33753719 ##########################################################
+zcat neuroticism.gwas.full.txt.gz > NE_33753719.txt
+awk 'BEGIN{FS=OFS="\t"}{print $1,$2,$3,$5,$4,$8,$9,$10,$11,$12,$13}' NE_33753719.a2effect.munge.new2.tsv |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if(length($4)==1 && length($5)==1)print $0}' |awk 'BEGIN{FS=OFS="\t"}NR==1{print}NR>1{if($4!="D" && $4!="I")print $0}' |uniq >  NE_33753719.a1effect.munge.rmInDels.uniq.tsv
 
 ########################################## AN_28494655: add rsID; convert OR ##########################################################
 sbatch convertOR.sh
