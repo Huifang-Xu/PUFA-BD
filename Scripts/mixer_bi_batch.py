@@ -12,9 +12,9 @@ import pandas as pd
 ###########################Designate input parameters############################
 def main(argv):
 	inputfile = ''
-	outputfile = ''
+	outputDir = ''
 	try:
-		opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+		opts, args = getopt.getopt(argv,"hi:o:",["ifile=","oDir="])
 	except getopt.GetoptError:
 		print ('Usage:python sample_batch.py -i <inputfile> -o <outputDir>')
 		sys.exit(2)
@@ -26,12 +26,12 @@ def main(argv):
 		elif opt in ("-o", "--odir"):
 			outputDir = arg
 ##############################################################################
+
 	# inputs and outputs
 	df=pd.read_table(inputfile, sep='\t')
 	inDir="/scratch/hx37930/project/psychiatri_PUFAs/04.mixer/data/"
 	uni_outputDir="/scratch/hx37930/project/psychiatri_PUFAs/04.mixer/univariate/"
 	bi_outputDir=outputDir
-	#bi_outputDir="/scratch/hx37930/project/psychiatri_PUFAs/04.mixer/bivariate/"
 	in_suffix=".a1effect.munge.rmInDels.uniq.noMHC.csv.gz"
 	
 	#########################################################
