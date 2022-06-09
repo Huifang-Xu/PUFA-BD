@@ -1,6 +1,7 @@
 #!bin/bash
 
 ######## Install MiXeR
+# Enter login node
 cd ~/software
 
 git clone --recurse-submodules https://github.com/precimed/mixer.git
