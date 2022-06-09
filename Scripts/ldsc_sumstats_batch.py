@@ -38,7 +38,7 @@ def main(argv):
 		out_BASH.write("#SBATCH --partition=batch\n")
 		out_BASH.write("#SBATCH --ntasks=1\n")
 		out_BASH.write("#SBATCH --cpus-per-task=1\n")
-		out_BASH.write("#SBATCH --mem=1GB\n")
+		out_BASH.write("#SBATCH --mem=10GB\n")
 		out_BASH.write("#SBATCH --time=48:00:00\n")
 		out_BASH.write("#SBATCH --export=NONE\n")
 		out_BASH.write("#SBATCH --output=%x_%j.out\n")
