@@ -9,11 +9,14 @@ git clone --recurse-submodules https://github.com/precimed/mixer.git
 ml CMake/3.15.3-GCCcore-8.3.0
 ml Python/3.8.2-GCCcore-8.3.0
 ml Boost/1.74.0-gompi-2019b
+ml matplotlib/3.1.1-fosscuda-2019b-Python-3.8.2
+
 
 #install required packages
 pip install pandas
 pip install scipy
 pip install numpy scipy pandas numdifftools --only-binary numpy scipy pandas --user 
+pip install matplotlib-venn
 
 mkdir mixer/src/build && cd mixer/src/build
 
