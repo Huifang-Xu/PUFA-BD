@@ -14,13 +14,14 @@ def main(argv):
 	inputfile = ''
 	outputDir = ''
 	try:
-		opts, args = getopt.getopt(argv,"hi:o:",["ifile=","oDir="])
+		opts, args = getopt.getopt(argv,"hi:o:",["help","ifile=","oDir="])
 	except getopt.GetoptError:
 		print ('Usage:python sample_batch.py -i <inputfile> -o <outputDir>')
 		sys.exit(2)
 	for opt, arg in opts:
-		if opt == '-h':
+		if opt in ("-h","--help"):
 			print ('Usage:python sample_batch.py -i <inputfile> -o <outputDir>')
+			sys.exit()
 		elif opt in ("-i", "--ifile"):
 			inputfile = arg
 		elif opt in ("-o", "--odir"):
