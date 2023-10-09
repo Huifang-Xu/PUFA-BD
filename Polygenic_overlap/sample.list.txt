@@ -1,0 +1,12 @@
+Trait	Pop_prev	Samp_prev	Ncases	Ncontrols	Ntotal	Path
+DHA	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_DHA.a1effect.munge.rmInDels.uniq.tsv.gz
+DHA_pct	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_DHA_pct.a1effect.munge.rmInDels.uniq.tsv.gz
+LA	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_LA.a1effect.munge.rmInDels.uniq.tsv.gz
+LA_pct	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_LA_pct.a1effect.munge.rmInDels.uniq.tsv.gz
+Omega_3	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_Omega_3.a1effect.munge.rmInDels.uniq.tsv.gz
+Omega_3_pct	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_Omega_3_pct.a1effect.munge.rmInDels.uniq.tsv.gz
+Omega_6	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_Omega_6.a1effect.munge.rmInDels.uniq.tsv.gz
+Omega_6_pct	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_Omega_6_pct.a1effect.munge.rmInDels.uniq.tsv.gz
+PUFA	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_PUFA.a1effect.munge.rmInDels.uniq.tsv.gz
+PUFA_pct	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_PUFA_pct.a1effect.munge.rmInDels.uniq.tsv.gz
+Omega_6_by_Omega_3	NA	NA	NA	NA	114999	/work/kylab/huifang/PUFA_Psychiatric/01.data/munged_data/PUFAs/UKB_Omega_6_by_Omega_3.a1effect.munge.rmInDels.uniq.tsv.gz
