@@ -1,5 +1,5 @@
-## Widespread but moderate genetic overlap between circulating polyunsaturated fatty acids and brain disorders
-https://www.sciencedirect.com/science/article/pii/S002222752500152X
+## Overview
+Xu, H., Sun, Y., Francis, M., Cheng, C. F., Modulla, N. T., Brenna, J. T., ... & Ye, K. (2025). Widespread but moderate genetic overlap between circulating polyunsaturated fatty acids and brain disorders. Journal of Lipid Research, 100890. DOI: https://doi.org/10.1016/j.jlr.2025.100890
 
 ## Study authors
 Huifang Xu, Yitang Sun, Michael Francis, Claire Frances Cheng, Nitya T.R. Modulla, James Thomas Brenna, Charleston W. K. Chiang, Kaixiong Ye
